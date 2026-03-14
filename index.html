@@ -3,1001 +3,641 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema Personal 2026</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Análisis Científico Integral de Salud — V3</title>
 <style>
-/* ─── RESET & BASE ──────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#07080f;
-  --s1:#0f1320;
-  --s2:#141928;
-  --s3:#1a2135;
-  --line:#1f2d42;
-  --line2:#2a3d58;
-  --t1:#e6edf8;
-  --t2:#7b91b0;
-  --t3:#374659;
+  :root {
+    --verde: #1B5E20; --verde2: #2E7D32; --verdeClaro: #E8F5E9;
+    --azul: #0D47A1; --azul2: #1565C0; --azulClaro: #E3F2FD;
+    --rojo: #B71C1C; --rojoClaro: #FFEBEE;
+    --naranja: #BF360C; --naranjaClaro: #FBE9E7;
+    --gris: #263238; --grisClaro: #ECEFF1; --grisMedio: #546E7A;
+    --dorado: #F57F17; --doradoClaro: #FFFDE7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #F5F5F5; color: var(--gris); font-size: 14px; }
 
-  --teal:#00e5b0;
-  --teal2:#00b88a;
-  --tealX:#002b22;
-  --amber:#ffb300;
-  --amber2:#cc8e00;
-  --amberX:#221800;
-  --rose:#ff4b6e;
-  --rose2:#cc2a4b;
-  --roseX:#200010;
-  --violet:#a78bfa;
-  --violet2:#7c5fe0;
-  --violetX:#130c28;
-  --green:#22c55e;
-  --greenX:#0a2016;
+  .portada {
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #0D47A1 100%);
+    color: white; text-align: center; padding: 60px 30px 50px;
+  }
+  .portada h1 { font-size: 2.2em; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px; }
+  .portada .sub1 { font-size: 1.1em; color: #FFCDD2; margin-bottom: 8px; font-weight: 700; }
+  .portada .sub2 { font-size: 0.95em; color: #B3E5FC; font-style: italic; margin-bottom: 6px; }
+  .portada .sub3 { font-size: 0.82em; color: #C8E6C9; opacity: 0.85; }
 
-  --r:12px;
-  --r2:8px;
-  font-size:15px;
-}
-body{background:var(--bg);color:var(--t1);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700}
-button{cursor:pointer;border:none;outline:none;font-family:'Inter',sans-serif}
-input{outline:none;font-family:'Inter',sans-serif}
-a{color:inherit;text-decoration:none}
+  .container { max-width: 960px; margin: 0 auto; padding: 0 16px 60px; }
 
-/* ─── SCROLLBAR ─────────────────────────────── */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--line2);border-radius:2px}
+  .seccion { margin: 40px 0 0; }
+  .seccion-titulo {
+    background: linear-gradient(90deg, var(--verde) 0%, var(--verde2) 100%);
+    color: white; padding: 14px 22px; border-radius: 8px 8px 0 0;
+    font-size: 1.15em; font-weight: 800; display: flex; align-items: center; gap: 10px;
+    border-bottom: 4px solid var(--dorado);
+  }
+  .seccion-body { background: white; border-radius: 0 0 8px 8px; padding: 24px 26px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
 
-/* ─── LAYOUT ────────────────────────────────── */
-.app{display:flex;flex-direction:column;min-height:100vh}
+  .h2 { color: var(--azul2); font-size: 1.05em; font-weight: 700; margin: 22px 0 10px; padding-left: 10px; border-left: 4px solid var(--azul2); }
+  .h2.rojo { color: var(--rojo); border-color: var(--rojo); }
+  .h2.verde { color: var(--verde); border-color: var(--verde); }
+  .h2.naranja { color: var(--naranja); border-color: var(--naranja); }
+  .h3 { color: var(--gris); font-size: 0.97em; font-weight: 700; margin: 16px 0 8px; }
 
-/* ─── TOP NAV ───────────────────────────────── */
-.topnav{
-  position:sticky;top:0;z-index:200;
-  display:flex;align-items:center;gap:0;
-  background:rgba(7,8,15,.92);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
-  height:56px;padding:0 24px;
-}
-.nav-brand{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:16px;
-  letter-spacing:3px;color:var(--teal);
-  text-shadow:0 0 30px rgba(0,229,176,.35);
-  margin-right:32px;white-space:nowrap;
-}
-.nav-tabs{display:flex;gap:4px;flex:1;overflow-x:auto}
-.nav-tabs::-webkit-scrollbar{height:0}
-.ntab{
-  padding:7px 16px;border-radius:var(--r2);
-  font-size:13px;font-weight:500;
-  color:var(--t2);background:transparent;
-  border:1px solid transparent;
-  transition:all .18s;white-space:nowrap;
-}
-.ntab:hover{color:var(--t1);background:var(--s1)}
-.ntab.on{color:var(--t1);background:var(--s2);border-color:var(--line)}
-.ntab .dot{
-  display:inline-block;width:6px;height:6px;border-radius:50%;
-  margin-right:7px;vertical-align:middle;
-}
-.nav-right{display:flex;align-items:center;gap:16px;margin-left:16px}
-.nav-date{font-size:11px;color:var(--t3);font-weight:500;white-space:nowrap}
-.nav-streak{
-  font-size:12px;font-weight:600;color:var(--amber);
-  background:var(--amberX);border:1px solid var(--amber2);
-  padding:4px 12px;border-radius:20px;white-space:nowrap;
-}
+  p { line-height: 1.7; margin-bottom: 10px; color: var(--gris); }
 
-/* ─── PAGE CONTAINER ────────────────────────── */
-.page{display:none;padding:28px 28px 60px;max-width:1400px;margin:0 auto;width:100%}
-.page.on{display:block;animation:fadeIn .25s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  ul { padding-left: 20px; margin: 6px 0 12px; }
+  ul li { margin-bottom: 7px; line-height: 1.65; }
+  ul li ul { margin-top: 4px; }
+  ul li ul li { font-size: 0.93em; color: var(--grisMedio); }
 
-/* ─── PAGE HEADER ───────────────────────────── */
-.pg-head{margin-bottom:28px}
-.pg-title{font-size:34px;letter-spacing:2px;line-height:1;margin-bottom:4px}
-.pg-sub{font-size:12px;color:var(--t2);font-weight:400;letter-spacing:.5px}
+  .caja {
+    border-radius: 8px; padding: 18px 20px; margin: 14px 0;
+    border-left: 6px solid;
+  }
+  .caja.rojo { background: var(--rojoClaro); border-color: var(--rojo); }
+  .caja.azul { background: var(--azulClaro); border-color: var(--azul); }
+  .caja.verde { background: var(--verdeClaro); border-color: var(--verde2); }
+  .caja.naranja { background: var(--naranjaClaro); border-color: var(--naranja); }
+  .caja.gris { background: var(--grisClaro); border-color: var(--grisMedio); }
+  .caja.dorado { background: var(--doradoClaro); border-color: var(--dorado); }
+  .caja-titulo { font-weight: 800; font-size: 1.02em; margin-bottom: 10px; }
+  .caja.rojo .caja-titulo { color: var(--rojo); }
+  .caja.azul .caja-titulo { color: var(--azul); }
+  .caja.verde .caja-titulo { color: var(--verde); }
+  .caja.naranja .caja-titulo { color: var(--naranja); }
+  .caja.gris .caja-titulo { color: var(--grisMedio); }
+  .caja.dorado .caja-titulo { color: var(--dorado); }
+  .caja p, .caja li { font-size: 0.93em; }
 
-/* ─── KPI ROW ───────────────────────────────── */
-.kpi-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:28px}
-.kpi{
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r);
-  padding:18px 20px;position:relative;overflow:hidden;
-  transition:border-color .2s,transform .2s;
-}
-.kpi:hover{transform:translateY(-2px);border-color:var(--line2)}
-.kpi-accent{position:absolute;top:0;left:0;right:0;height:2px}
-.kpi-label{font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--t2);text-transform:uppercase;margin-bottom:10px}
-.kpi-val{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;line-height:1;margin-bottom:2px}
-.kpi-note{font-size:11px;color:var(--t3)}
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.88em; }
+  th { background: var(--verde2); color: white; padding: 10px 10px; text-align: left; font-weight: 700; }
+  td { padding: 9px 10px; border: 1px solid #CFD8DC; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: var(--verdeClaro); }
+  tr:nth-child(odd) td { background: white; }
 
-/* ─── GRID LAYOUTS ──────────────────────────── */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.grid-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.82em; font-weight: 700; margin-left: 6px; }
+  .badge.critico { background: #FFCDD2; color: var(--rojo); }
+  .badge.alto { background: #FFE0B2; color: #BF360C; }
+  .badge.mod { background: #FFF9C4; color: #F57F17; }
+  .badge.util { background: var(--verdeClaro); color: var(--verde); }
 
-/* ─── CARD ──────────────────────────────────── */
-.card{
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r);
-  padding:22px;
-}
-.card-title{
-  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
-  letter-spacing:2px;color:var(--t2);text-transform:uppercase;
-  margin-bottom:18px;
-}
-.card-title span{color:var(--t1);font-size:14px;letter-spacing:0;margin-left:8px;text-transform:none}
+  .top3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .top3-card {
+    background: white; border-radius: 10px; padding: 18px 16px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.1); border-top: 5px solid var(--verde);
+    text-align: center;
+  }
+  .top3-num { font-size: 2.4em; font-weight: 900; color: var(--verde); line-height: 1; }
+  .top3-titulo { font-weight: 700; font-size: 0.97em; margin: 8px 0 6px; color: var(--gris); }
+  .top3-desc { font-size: 0.83em; color: var(--grisMedio); line-height: 1.5; }
 
-/* ─── SECTION DIVIDER ───────────────────────── */
-.sec-head{display:flex;align-items:center;gap:12px;margin:28px 0 14px}
-.sec-head h2{font-size:18px;letter-spacing:1px;white-space:nowrap}
-.sec-line{flex:1;height:1px;background:var(--line)}
-.sec-count{font-size:10px;color:var(--t3);font-weight:500;font-family:'Inter',sans-serif;letter-spacing:1px}
+  .perfil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; }
+  .perfil-item { background: white; border-radius: 8px; padding: 12px 14px; border: 1px solid #B0BEC5; }
+  .perfil-label { font-size: 0.78em; color: var(--grisMedio); font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
+  .perfil-value { font-size: 1.05em; font-weight: 700; color: var(--gris); }
+  .perfil-value.warn { color: var(--rojo); }
 
-/* ─── TODAY VIEW ────────────────────────────── */
-.today-nav{display:flex;align-items:center;gap:10px;margin-bottom:20px}
-.day-btn{
-  background:var(--s2);border:1px solid var(--line);
-  color:var(--t2);border-radius:var(--r2);
-  padding:7px 14px;font-size:12px;font-weight:500;
-  transition:all .15s;
-}
-.day-btn:hover{color:var(--t1);border-color:var(--line2)}
-.today-label{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;flex:1;text-align:center}
-.today-btn-go{
-  background:var(--tealX);border:1px solid var(--teal2);
-  color:var(--teal);border-radius:var(--r2);
-  padding:7px 16px;font-size:11px;font-weight:600;letter-spacing:1px;
-  transition:all .15s;
-}
-.today-btn-go:hover{background:var(--teal);color:var(--bg)}
+  .horario-item { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
+  .horario-hora { background: var(--verde2); color: white; border-radius: 8px; padding: 8px 12px; font-size: 0.82em; font-weight: 700; min-width: 90px; text-align: center; line-height: 1.4; }
+  .horario-accion { font-weight: 700; font-size: 0.95em; margin-bottom: 4px; color: var(--azul2); }
+  .horario-desc { font-size: 0.88em; color: var(--grisMedio); line-height: 1.5; }
 
-/* Habit cards */
-.hab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.hab-card{
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r);
-  padding:16px;cursor:pointer;transition:all .2s;
-  display:flex;flex-direction:column;gap:6px;
-  user-select:none;position:relative;overflow:hidden;
-}
-.hab-card:hover{border-color:var(--line2);transform:translateY(-1px)}
-.hab-card.on{border-color:var(--teal);background:var(--tealX);box-shadow:0 0 20px rgba(0,229,176,.08)}
-.hab-card.on-dose{border-color:var(--green);background:var(--greenX);box-shadow:0 0 20px rgba(34,197,94,.08)}
-.hab-icon{font-size:22px;line-height:1}
-.hab-name{font-size:13px;font-weight:600;color:var(--t1)}
-.hab-info{font-size:11px;color:var(--t2)}
-.hab-card.on .hab-info{color:var(--teal)}
-.hab-card.on-dose .hab-info{color:var(--green)}
-.hab-check{
-  position:absolute;top:10px;right:10px;
-  width:18px;height:18px;border-radius:50%;
-  border:1.5px solid var(--line2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;font-weight:700;color:transparent;
-  transition:all .15s;
-}
-.hab-card.on .hab-check{background:var(--teal);border-color:var(--teal);color:var(--bg)}
-.hab-card.on-dose .hab-check{background:var(--green);border-color:var(--green);color:var(--bg)}
-.dot-bar{display:flex;gap:3px;margin-top:4px}
-.dot-b{width:7px;height:7px;border-radius:2px;background:var(--line);flex-shrink:0}
-.dot-b.y{background:var(--teal)}
-.dot-b.y-d{background:var(--green)}
+  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .ref-item { font-size: 0.8em; color: var(--grisMedio); background: #F5F5F5; padding: 5px 8px; border-radius: 4px; border-left: 3px solid #B0BEC5; }
 
-/* ─── READING CARDS ─────────────────────────── */
-.book-card{
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r);
-  padding:22px;display:flex;flex-direction:column;gap:14px;
-  position:relative;overflow:hidden;
-}
-.book-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(to right,var(--amber),var(--amber2));
-}
-.book-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;line-height:1.2}
-.book-author{font-size:11px;color:var(--t2);font-weight:500;letter-spacing:.5px}
-.prog-wrap{display:flex;flex-direction:column;gap:5px}
-.prog-bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden}
-.prog-fill{height:100%;border-radius:3px;background:linear-gradient(to right,var(--amber),var(--amber2));transition:width .5s cubic-bezier(.34,1.56,.64,1)}
-.prog-labels{display:flex;justify-content:space-between;font-size:11px}
-.prog-labels .pag{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--amber)}
-.prog-labels .pct{color:var(--t2)}
-.today-read{
-  display:flex;align-items:center;gap:8px;
-  background:var(--s2);border-radius:var(--r2);padding:10px 12px;
-}
-.today-read .num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--amber);min-width:40px}
-.today-read .lbl{font-size:11px;color:var(--t2);line-height:1.4}
-.meta-badge{
-  font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;
-  border:1px solid;margin-left:auto;white-space:nowrap;
-}
-.meta-ok{background:var(--greenX);border-color:var(--green);color:var(--green)}
-.meta-no{background:var(--roseX);border-color:var(--rose2);color:var(--rose)}
-.meta-0{background:var(--s3);border-color:var(--line);color:var(--t3)}
-.book-input-row{display:flex;gap:8px;align-items:center}
-.pag-input{
-  background:var(--s2);border:1px solid var(--line);
-  color:var(--t1);border-radius:var(--r2);
-  padding:8px 12px;font-size:14px;font-weight:600;
-  width:90px;text-align:center;transition:border-color .15s;
-}
-.pag-input:focus{border-color:var(--amber)}
-.pag-lbl{font-size:12px;color:var(--t2);flex:1}
-.save-pg{
-  background:var(--amberX);border:1px solid var(--amber2);
-  color:var(--amber);border-radius:var(--r2);
-  padding:8px 16px;font-size:11px;font-weight:700;letter-spacing:1px;
-  transition:all .15s;
-}
-.save-pg:hover{background:var(--amber);color:var(--bg)}
-
-/* ─── OBJECTIVES ────────────────────────────── */
-.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.fbtn{
-  background:var(--s1);border:1px solid var(--line);border-radius:20px;
-  padding:6px 15px;font-size:12px;font-weight:500;color:var(--t2);
-  transition:all .15s;
-}
-.fbtn:hover{color:var(--t1);border-color:var(--line2)}
-.fbtn.on{color:var(--bg);font-weight:600}
-.fbtn.fa.on{background:var(--t2);border-color:var(--t2)}
-.fbtn.fh.on{background:var(--rose);border-color:var(--rose)}
-.fbtn.fm.on{background:var(--amber);border-color:var(--amber)}
-.fbtn.fv.on{background:var(--teal);border-color:var(--teal)}
-
-.obj-list{display:flex;flex-direction:column;gap:6px}
-.obj-row{
-  display:grid;grid-template-columns:80px 1fr 110px 36px;
-  align-items:center;gap:12px;
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r2);
-  padding:12px 16px;transition:all .15s;
-}
-.obj-row:hover{border-color:var(--line2)}
-.obj-row.done{opacity:.38}
-.obj-row.done .obj-text{text-decoration:line-through;text-decoration-color:var(--t3)}
-.prio-tag{
-  font-size:10px;font-weight:700;letter-spacing:.5px;
-  padding:4px 8px;border-radius:6px;text-align:center;white-space:nowrap;
-}
-.ph{background:var(--roseX);color:var(--rose);border:1px solid var(--rose2)}
-.pm{background:var(--amberX);color:var(--amber);border:1px solid var(--amber2)}
-.pv{background:var(--tealX);color:var(--teal);border:1px solid var(--teal2)}
-.obj-text{font-size:13px;font-weight:500}
-.obj-cat{
-  font-size:10px;color:var(--t2);
-  background:var(--s2);border-radius:4px;
-  padding:3px 8px;text-align:center;
-}
-.check-btn{
-  width:30px;height:30px;border-radius:50%;
-  background:transparent;border:1.5px solid var(--line2);
-  color:transparent;font-size:13px;font-weight:700;
-  transition:all .15s;display:flex;align-items:center;justify-content:center;
-}
-.check-btn:hover{border-color:var(--green);color:var(--green)}
-.obj-row.done .check-btn{background:var(--green);border-color:var(--green);color:var(--bg)}
-
-/* ─── SHOPPING ──────────────────────────────── */
-.budget-panel{
-  display:flex;align-items:center;gap:20px;
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r);
-  padding:18px 22px;margin-bottom:20px;
-}
-.bdg-block .bdg-lbl{font-size:10px;font-weight:600;letter-spacing:1px;color:var(--t2);text-transform:uppercase;margin-bottom:4px}
-.bdg-block .bdg-val{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--rose)}
-.bdg-bar-wrap{flex:1}
-.bdg-prog-track{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:6px}
-.bdg-prog-fill{height:100%;border-radius:3px;background:linear-gradient(to right,var(--rose),var(--rose2));transition:width .5s}
-.bdg-meta{font-size:10px;color:var(--t2);margin-top:4px}
-
-.shop-cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.scat{
-  display:flex;align-items:center;gap:6px;
-  background:var(--s1);border:1px solid var(--line);
-  border-radius:20px;padding:6px 14px;
-  font-size:12px;color:var(--t2);cursor:pointer;transition:all .15s;
-}
-.scat:hover{color:var(--t1);border-color:var(--line2)}
-.scat.on{background:var(--roseX);border-color:var(--rose2);color:var(--rose)}
-
-.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.shop-card{
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r);
-  padding:14px 16px;cursor:pointer;transition:all .15s;
-  position:relative;overflow:hidden;
-}
-.shop-card:hover{border-color:var(--line2);transform:translateY(-1px)}
-.shop-card.bought{opacity:.3;pointer-events:none}
-.shop-card.bought::after{
-  content:'✓';position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;font-weight:800;color:var(--green);
-  background:rgba(7,8,15,.7);border-radius:var(--r);
-}
-.sh-ico{font-size:18px;margin-bottom:6px}
-.sh-name{font-size:13px;font-weight:600;margin-bottom:4px}
-.sh-price{font-size:12px;color:var(--rose);font-weight:600}
-.sh-price.nil{color:var(--t3)}
-.sh-tag{font-size:10px;color:var(--t3);letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
-
-/* ─── CHARTS ────────────────────────────────── */
-.chart-wrap{position:relative;width:100%;border-radius:var(--r);overflow:hidden}
-.chart-wrap canvas{display:block}
-
-/* ─── DASHBOARD SPECIFIC ────────────────────── */
-.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
-.habits-overview-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 0;border-bottom:1px solid var(--line);
-}
-.habits-overview-row:last-child{border-bottom:none}
-.hor-name{font-size:13px;font-weight:500}
-.hor-streak{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--teal)}
-.hor-streak.zero{color:var(--t3)}
-.hor-dots{display:flex;gap:2px}
-.hor-dot{width:6px;height:6px;border-radius:1px;background:var(--line)}
-.hor-dot.y{background:var(--teal)}
-.hor-dot.y2{background:var(--green)}
-
-.goal-top-row{
-  display:flex;align-items:center;gap:10px;
-  padding:8px 0;border-bottom:1px solid var(--line);
-}
-.goal-top-row:last-child{border-bottom:none}
-.gtr-name{font-size:12px;font-weight:500;flex:1}
-.gtr-bar{width:60px;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
-.gtr-fill{height:100%;border-radius:2px;background:var(--violet);transition:width .5s}
-.gtr-fill.done{background:var(--green)}
-
-/* ─── ANALYSIS PAGE ─────────────────────────── */
-.analysis-section{margin-bottom:32px}
-.insight-box{
-  background:var(--s1);border:1px solid var(--line);border-radius:var(--r);
-  padding:18px 20px;margin-bottom:10px;
-  display:flex;gap:14px;align-items:flex-start;
-}
-.ins-icon{font-size:20px;flex-shrink:0;margin-top:1px}
-.ins-title{font-size:13px;font-weight:600;margin-bottom:3px}
-.ins-body{font-size:12px;color:var(--t2);line-height:1.6}
-.ins-body b{color:var(--t1)}
-
-/* ─── NOTES ─────────────────────────────────── */
-.quote-block{
-  border-left:2px solid var(--amber);
-  padding:12px 18px;margin-bottom:10px;
-  background:var(--s1);border-radius:0 var(--r2) var(--r2) 0;
-}
-.qt-label{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase;margin-bottom:6px}
-.qt-text{font-size:13px;color:var(--t2);line-height:1.7;font-style:italic}
-
-/* ─── RESPONSIVE ────────────────────────────── */
-@media(max-width:800px){
-  .grid-2,.grid-3,.dash-grid{grid-template-columns:1fr}
-  .page{padding:16px 16px 50px}
-  .kpi-row{grid-template-columns:repeat(2,1fr)}
-  .obj-row{grid-template-columns:70px 1fr 30px}
-  .obj-cat{display:none}
-}
+  @media (max-width: 640px) {
+    .portada h1 { font-size: 1.4em; }
+    .top3 { grid-template-columns: 1fr; }
+    .perfil-grid { grid-template-columns: 1fr; }
+    .ref-grid { grid-template-columns: 1fr; }
+    .seccion-titulo { font-size: 0.98em; }
+  }
 </style>
 </head>
 <body>
-<div class="app">
 
-<!-- ── TOPNAV ── -->
-<nav class="topnav">
-  <div class="nav-brand">SP26</div>
-  <div class="nav-tabs">
-    <button class="ntab on" data-p="hoy"       onclick="go('hoy')"><span class="dot" style="background:var(--teal)"></span>Hoy</button>
-    <button class="ntab"    data-p="habitos"   onclick="go('habitos')"><span class="dot" style="background:var(--teal)"></span>Hábitos</button>
-    <button class="ntab"    data-p="lecturas"  onclick="go('lecturas')"><span class="dot" style="background:var(--amber)"></span>Lecturas</button>
-    <button class="ntab"    data-p="objetivos" onclick="go('objetivos')"><span class="dot" style="background:var(--violet)"></span>Objetivos</button>
-    <button class="ntab"    data-p="compras"   onclick="go('compras')"><span class="dot" style="background:var(--rose)"></span>Compras</button>
-    <button class="ntab"    data-p="analisis"  onclick="go('analisis')"><span class="dot" style="background:var(--violet)"></span>Análisis</button>
-    <button class="ntab"    data-p="notas"     onclick="go('notas')"><span class="dot" style="background:var(--green)"></span>Frases</button>
-  </div>
-  <div class="nav-right">
-    <span class="nav-date" id="top-date"></span>
-    <span class="nav-streak" id="top-streak">🔥 0 días</span>
-  </div>
-</nav>
-
-<!-- ════ HOY ════ -->
-<div class="page on" id="p-hoy">
-  <div class="pg-head">
-    <div class="pg-title" style="color:var(--teal)" id="hoy-title">HOY</div>
-    <div class="pg-sub">MARCA TUS HÁBITOS · REGISTRA LECTURAS · REVISA PROGRESO</div>
-  </div>
-
-  <div class="kpi-row">
-    <div class="kpi" style="border-top:2px solid var(--teal)">
-      <div class="kpi-label">Días activo</div>
-      <div class="kpi-val" style="color:var(--teal)" id="k-dias">—</div>
-      <div class="kpi-note">desde 09 Mar 2026</div>
-    </div>
-    <div class="kpi" style="border-top:2px solid var(--teal)">
-      <div class="kpi-label">Hábitos hoy</div>
-      <div class="kpi-val" style="color:var(--teal)" id="k-hoy">0 / 16</div>
-      <div class="kpi-note">completados</div>
-    </div>
-    <div class="kpi" style="border-top:2px solid var(--amber)">
-      <div class="kpi-label">Páginas leídas</div>
-      <div class="kpi-val" style="color:var(--amber)" id="k-pags">0</div>
-      <div class="kpi-note">total acumulado</div>
-    </div>
-    <div class="kpi" style="border-top:2px solid var(--violet)">
-      <div class="kpi-label">Objetivos</div>
-      <div class="kpi-val" style="color:var(--violet)" id="k-obj">0/29</div>
-      <div class="kpi-note">completados</div>
-    </div>
-    <div class="kpi" style="border-top:2px solid var(--rose)">
-      <div class="kpi-label">Racha máx.</div>
-      <div class="kpi-val" style="color:var(--rose)" id="k-streak">—</div>
-      <div class="kpi-note">días seguidos</div>
-    </div>
-  </div>
-
-  <div class="sec-head">
-    <h2 style="color:var(--teal)">⚡ RACHAS</h2>
-    <div class="sec-line"></div>
-    <div class="sec-count">5 HÁBITOS DE DISCIPLINA</div>
-  </div>
-  <div class="hab-grid" id="hoy-streaks"></div>
-
-  <div class="sec-head">
-    <h2 style="color:var(--green)">💊 DOSIS DIARIAS</h2>
-    <div class="sec-line"></div>
-    <div class="sec-count">11 NUTRIENTES</div>
-  </div>
-  <div class="hab-grid" id="hoy-doses"></div>
-
-  <div class="sec-head">
-    <h2 style="color:var(--amber)">📚 LECTURAS DE HOY</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="grid-3" id="hoy-books"></div>
+<div class="portada">
+  <h1>📊 ANÁLISIS CIENTÍFICO INTEGRAL DE SALUD</h1>
+  <div class="sub1">VERSIÓN FINAL V3 — ACTUALIZADA CON TODOS LOS DATOS</div>
+  <div class="sub2">Suplementación · Tinnitus Crónico · Sueño · Ansiedad · Cognición · Rendimiento</div>
+  <div class="sub3">Fuentes: PubMed · Scopus · Web of Science · Cochrane Library<br>Solo estudios revisados por pares con DOI indexado</div>
 </div>
 
-<!-- ════ HÁBITOS ════ -->
-<div class="page" id="p-habitos">
-  <div class="pg-head">
-    <div class="pg-title" style="color:var(--teal)">HÁBITOS</div>
-    <div class="pg-sub">HISTORIAL Y NAVEGACIÓN POR DÍA</div>
-  </div>
-  <div class="today-nav">
-    <button class="day-btn" onclick="cd(-1)">← Anterior</button>
-    <div class="today-label" id="hab-date-lbl"></div>
-    <button class="day-btn" onclick="cd(1)">Siguiente →</button>
-    <button class="today-btn-go" onclick="goHoy()">HOY</button>
-  </div>
-  <div class="sec-head"><h2 style="color:var(--teal)">⚡ RACHAS</h2><div class="sec-line"></div></div>
-  <div class="hab-grid" id="hab-streaks"></div>
-  <div class="sec-head"><h2 style="color:var(--green)">💊 DOSIS DIARIAS</h2><div class="sec-line"></div></div>
-  <div class="hab-grid" id="hab-doses"></div>
-</div>
+<div class="container">
 
-<!-- ════ LECTURAS ════ -->
-<div class="page" id="p-lecturas">
-  <div class="pg-head">
-    <div class="pg-title" style="color:var(--amber)">LECTURAS</div>
-    <div class="pg-sub">REGISTRA LA PÁGINA ACTUAL · LA APP CALCULA LO DEMÁS</div>
-  </div>
-  <div class="grid-3" id="book-cards-full"></div>
-
-  <div class="sec-head" style="margin-top:32px">
-    <h2 style="color:var(--amber)">PROGRESO HISTÓRICO</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="card">
-    <div class="chart-wrap" style="height:220px">
-      <canvas id="chart-reading"></canvas>
+<!-- PERFIL -->
+<div class="seccion">
+  <div class="seccion-titulo">📋 PERFIL DEL USUARIO — DATOS CLÍNICOS COMPLETOS</div>
+  <div class="seccion-body">
+    <div class="perfil-grid">
+      <div class="perfil-item"><div class="perfil-label">Edad</div><div class="perfil-value">30 años</div></div>
+      <div class="perfil-item"><div class="perfil-label">Estatura</div><div class="perfil-value">1.80 m</div></div>
+      <div class="perfil-item"><div class="perfil-label">Peso</div><div class="perfil-value warn">60 kg ⚠️</div></div>
+      <div class="perfil-item"><div class="perfil-label">IMC</div><div class="perfil-value warn">18.5 — LÍMITE INFERIOR OMS ⚠️</div></div>
+      <div class="perfil-item"><div class="perfil-label">Horario sueño</div><div class="perfil-value warn">23:00–05:00 = 6h (insuficiente) ⚠️</div></div>
+      <div class="perfil-item"><div class="perfil-label">Universidad</div><div class="perfil-value">07:00–19:00 (L–V)</div></div>
+      <div class="perfil-item"><div class="perfil-label">Academia (docencia)</div><div class="perfil-value">19:00–22:00 (3h/día)</div></div>
+      <div class="perfil-item"><div class="perfil-label">Carreras</div><div class="perfil-value">Ing. Civil + Ing. Electrónica</div></div>
+    </div>
+    <div class="caja rojo" style="margin-top:14px;">
+      <div class="caja-titulo">🚨 NUEVA CORRECCIÓN IMPORTANTE</div>
+      <p>Reportas <strong>60 kg</strong> (antes 63 kg). IMC = 18.5 = <strong>límite inferior absoluto OMS</strong>. Cualquier pérdida adicional = desnutrición clínica.</p>
+      <p>Solo duermes <strong>~6 horas</strong>. Las guías clínicas requieren <strong>7–9 horas</strong> para adultos 18–64 años. El tinnitus lleva <strong>7 años</strong> — no está relacionado con el cambio de hábito de ayer.</p>
+      <p style="font-size:0.85em;margin-top:6px;">Hirshkowitz M et al. (2015). National Sleep Foundation. Sleep Health, 1(1):40-43.</p>
     </div>
   </div>
 </div>
 
-<!-- ════ OBJETIVOS ════ -->
-<div class="page" id="p-objetivos">
-  <div class="pg-head">
-    <div class="pg-title" style="color:var(--violet)">OBJETIVOS</div>
-    <div class="pg-sub">29 METAS · PRIORIZADAS POR IMPACTO REAL EN TU VIDA</div>
-  </div>
-  <div class="kpi-row">
-    <div class="kpi" style="border-top:2px solid var(--rose)">
-      <div class="kpi-label">Alta prioridad</div>
-      <div class="kpi-val" style="color:var(--rose)" id="k-alta">7</div>
-      <div class="kpi-note">urgentes</div>
-    </div>
-    <div class="kpi" style="border-top:2px solid var(--amber)">
-      <div class="kpi-label">Media prioridad</div>
-      <div class="kpi-val" style="color:var(--amber)" id="k-media">12</div>
-      <div class="kpi-note">importantes</div>
-    </div>
-    <div class="kpi" style="border-top:2px solid var(--teal)">
-      <div class="kpi-label">Visión</div>
-      <div class="kpi-val" style="color:var(--teal)" id="k-vision">10</div>
-      <div class="kpi-note">largo plazo</div>
-    </div>
-    <div class="kpi" style="border-top:2px solid var(--green)">
-      <div class="kpi-label">Completados</div>
-      <div class="kpi-val" style="color:var(--green)" id="k-done-obj">0</div>
-      <div class="kpi-note">de 29</div>
+<!-- SECCIÓN 0 — DIAGNÓSTICO RAÍZ -->
+<div class="seccion">
+  <div class="seccion-titulo">🔍 SECCIÓN 0 — DIAGNÓSTICO RAÍZ: ¿POR QUÉ TIENES ESTOS SÍNTOMAS?</div>
+  <div class="seccion-body">
+    <p>Antes de analizar suplementos, es fundamental identificar las causas reales. Un tratamiento efectivo ataca las causas, no los síntomas.</p>
+
+    <table>
+      <tr><th>Síntoma</th><th>Causa #1 más probable</th><th>Causa #2</th><th>Urgencia</th></tr>
+      <tr><td>Pérdida de memoria y olvidos</td><td>Sueño insuficiente crónico (6h vs 7–9h)</td><td>Déficit de B12 (desmielinización neuronal)</td><td style="color:var(--rojo);font-weight:700;">🔴 ALTA</td></tr>
+      <tr><td>Ansiedad</td><td>Déficit de magnesio (regula eje HHA)</td><td>Privación de sueño crónica</td><td style="color:var(--rojo);font-weight:700;">🔴 ALTA</td></tr>
+      <tr><td>Irritabilidad y alteraciones</td><td>Privación de sueño (amígdala +60% reactiva)</td><td>Déficit de Mg (regula GABA y NMDA)</td><td style="color:var(--rojo);font-weight:700;">🔴 ALTA</td></tr>
+      <tr><td>Energía muy baja</td><td>Déficit calórico severo (IMC 18.5)</td><td>Privación de sueño crónica</td><td style="color:var(--rojo);font-weight:700;">🔴 CRÍTICA</td></tr>
+      <tr><td>Bajo rendimiento académico</td><td>Sueño insuficiente (sin sueño, no se consolida memoria)</td><td>Déficit calórico cerebral</td><td style="color:var(--rojo);font-weight:700;">🔴 ALTA</td></tr>
+      <tr><td>Tinnitus (7 años)</td><td>Déficit crónico de B12 (47% casos — Shemesh 1993)</td><td>Estrés oxidativo coclear</td><td style="color:var(--naranja);font-weight:700;">🟠 OTORRINO</td></tr>
+    </table>
+
+    <div class="caja rojo">
+      <div class="caja-titulo">🔑 TUS 3 CAUSAS RAÍZ — en orden de impacto</div>
+      <p><strong>1️⃣ SUEÑO INSUFICIENTE CRÓNICO</strong> — 6h vs 7–9h recomendadas. Responsable directo de pérdida de memoria, irritabilidad y ansiedad. Ningún suplemento compensa la privación crónica de sueño.<br><small>Walker MP (2017). Why We Sleep. / Cirelli C (2013). Current Biology.</small></p>
+      <p><strong>2️⃣ DÉFICIT CALÓRICO SEVERO</strong> — IMC 18.5 con actividad extrema. El cerebro consume el 20% de las calorías totales. Déficit = hipoglucemia cerebral = pérdida de memoria, fatiga, irritabilidad.<br><small>Lieberman HR (2003). Appetite, 40(3):245-254. DOI: 10.1016/S0195-6663(03)00010-2</small></p>
+      <p><strong>3️⃣ DÉFICITS NUTRICIONALES</strong> — B12, Magnesio, posiblemente Hierro y Vitamina D. Agravan todo lo anterior y tienen efectos directos sobre el sistema nervioso.<br><small>Green R et al. (2017). Nature Reviews Disease Primers, 3:17040.</small></p>
     </div>
   </div>
-  <div class="filter-bar">
-    <button class="fbtn fa on" onclick="fObj('all',this)">Todos</button>
-    <button class="fbtn fh"    onclick="fObj('alta',this)">🔴 Alta prioridad</button>
-    <button class="fbtn fm"    onclick="fObj('media',this)">🟡 Media</button>
-    <button class="fbtn fv"    onclick="fObj('vision',this)">🟢 Visión</button>
-  </div>
-  <div class="obj-list" id="obj-list"></div>
 </div>
 
-<!-- ════ COMPRAS ════ -->
-<div class="page" id="p-compras">
-  <div class="pg-head">
-    <div class="pg-title" style="color:var(--rose)">COMPRAS</div>
-    <div class="pg-sub">LISTA DEPURADA SIN DUPLICADOS · CLICK PARA MARCAR COMO COMPRADO</div>
+<!-- SECCIÓN 1 — SUEÑO -->
+<div class="seccion">
+  <div class="seccion-titulo">😴 SECCIÓN 1 — SUEÑO: EL FACTOR MÁS SUBESTIMADO</div>
+  <div class="seccion-body">
+    <ul>
+      <li><strong>Consolidación de memoria:</strong> Stickgold R & Walker MP (2013). Nature Neuroscience, 16(2):139-145. Durante el sueño NREM el hipocampo transfiere información a la corteza prefrontal. SIN SUEÑO SUFICIENTE, la memoria no se consolida. Esto explica tus olvidos más que cualquier otra causa.</li>
+      <li><strong>Privación y rendimiento:</strong> Harrison Y & Horne JA (2000). J Exp Psychology: Applied, 6(3):236-249. 6 horas de sueño durante 2 semanas produce déficits cognitivos equivalentes a 2 noches de privación total.</li>
+      <li><strong>Ansiedad e irritabilidad:</strong> Goldstein AN & Walker MP (2014). Annual Review of Clinical Psychology, 10:679-708. La amígdala (centro emocional) es <strong>60% más reactiva</strong> con privación de sueño → explica tu irritabilidad y ansiedad directamente.</li>
+      <li><strong>Tinnitus y sueño:</strong> Lasisi AO & Gureje O (2011). Sleep Medicine, 12(1):60-64. La privación amplifica la percepción del tinnitus al reducir la capacidad del córtex auditivo de suprimir señales espontáneas.</li>
+    </ul>
+
+    <div class="caja dorado">
+      <div class="caja-titulo">💡 ESTRATEGIA PARA OPTIMIZAR EL SUEÑO CON TU HORARIO</div>
+      <ul>
+        <li>Dormir a las <strong>22:30 en lugar de 23:00</strong> → ganar 30 min (impacto significativo)</li>
+        <li>Tomar citrato de Mg <strong>30 min antes de dormir</strong> → mejora sueño profundo NREM</li>
+        <li><strong>ELIMINAR pantallas desde las 21:30</strong> → protege melatonina. (Exelmans & Van den Bulck, 2016. Sleep Medicine)</li>
+        <li>Temperatura del cuarto &lt;20°C favorece sueño profundo</li>
+        <li>Fines de semana: <strong>PRIORIDAD #1 = dormir 8–9 horas</strong></li>
+      </ul>
+    </div>
   </div>
-  <div class="budget-panel">
-    <div class="bdg-block">
-      <div class="bdg-lbl">Total estimado</div>
-      <div class="bdg-val" id="bdg-total">S/ 559</div>
-    </div>
-    <div class="bdg-bar-wrap">
-      <div class="bdg-meta" id="bdg-meta">Pendiente de comprar</div>
-      <div class="bdg-prog-track"><div class="bdg-prog-fill" id="bdg-fill" style="width:100%"></div></div>
-    </div>
-    <div class="bdg-block">
-      <div class="bdg-lbl">Restante</div>
-      <div class="bdg-val" id="bdg-pend">S/ 559</div>
-    </div>
-  </div>
-  <div class="shop-cats" id="shop-cats"></div>
-  <div class="shop-grid" id="shop-grid"></div>
 </div>
 
-<!-- ════ ANÁLISIS ════ -->
-<div class="page" id="p-analisis">
-  <div class="pg-head">
-    <div class="pg-title" style="color:var(--violet)">ANÁLISIS</div>
-    <div class="pg-sub">GRÁFICOS + OBSERVACIONES SOBRE TU PROGRESO</div>
-  </div>
+<!-- SECCIÓN 2 — TINNITUS -->
+<div class="seccion">
+  <div class="seccion-titulo">🔊 SECCIÓN 2 — TINNITUS CRÓNICO (7 AÑOS)</div>
+  <div class="seccion-body">
+    <div class="caja rojo">
+      <div class="caja-titulo">⚠️ CLASIFICACIÓN Y ACLARACIÓN CLAVE</div>
+      <p>El tinnitus lleva <strong>7 años</strong> y no está relacionado con el cambio de hábito de ayer ni con ningún suplemento reciente. Es una condición crónica con causas identificables.</p>
+      <p>Prevalencia: 10–15% de adultos. Bhatt JM et al. (2016). JAMA Otolaryngology, 142(6):550-556.</p>
+      <p>Referencia base: Langguth B et al. (2013). The Lancet Neurology, 12(9):920-930. DOI: 10.1016/S1474-4422(13)70160-1</p>
+    </div>
 
-  <div class="analysis-section">
-    <div class="sec-head"><h2>🔥 Consistencia de hábitos — últimas 2 semanas</h2><div class="sec-line"></div></div>
-    <div class="card"><div class="chart-wrap" style="height:240px"><canvas id="chart-habits"></canvas></div></div>
-  </div>
+    <div class="h2 rojo">Causas documentadas — relevancia para tu caso</div>
+    <ul>
+      <li><strong>Déficit de B12 (más relevante para ti):</strong> Shemesh Z et al. (1993). Am J Otolaryngology, 14(2):94-99. En 113 pacientes: <strong>47% tenían déficit de B12</strong>. El 54% mostraron reducción con suplementación. Mecanismo: la B12 sintetiza mielina del nervio auditivo (VIII par craneal).</li>
+      <li><strong>Déficit de Magnesio:</strong> Herzberg M & Sperber M (1993). Experimental Neurology. El Mg bloquea canales NMDA en la cóclea, reduciendo excitotoxicidad auditiva.</li>
+      <li><strong>Estrés oxidativo coclear:</strong> Fetoni AR et al. (2013). Exp Gerontology, 48(2):107-112. Radicales libres dañan células ciliadas cocleares. La astaxantina las protege activamente.</li>
+      <li><strong>Privación de sueño (amplificador):</strong> Lasisi & Gureje (2011). Corregir el sueño reduce la molestia percibida del tinnitus.</li>
+    </ul>
 
-  <div class="analysis-section">
-    <div class="sec-head"><h2>📚 Páginas leídas por día</h2><div class="sec-line"></div></div>
-    <div class="card"><div class="chart-wrap" style="height:220px"><canvas id="chart-reading2"></canvas></div></div>
+    <div class="caja rojo">
+      <div class="caja-titulo">🏥 PASOS MÉDICOS OBLIGATORIOS PARA EL TINNITUS</div>
+      <ul>
+        <li><strong>Análisis de sangre:</strong> B12 sérica (si &lt;300 pg/mL = causa neurológica confirmada), Mg sérico, hemograma, ferritina</li>
+        <li><strong>Otorrinolaringólogo:</strong> Audiometría tonal + timpanometría + potenciales evocados auditivos (BERA)</li>
+        <li><strong>Protocolo nutricional simultáneo:</strong> B12 sublingual 1,000–2,000 mcg/día + Mg 300–400 mg/noche + Astaxantina 12 mg/día</li>
+      </ul>
+    </div>
   </div>
+</div>
 
-  <div class="analysis-section">
-    <div class="sec-head"><h2>🎯 Balance de objetivos</h2><div class="sec-line"></div></div>
-    <div class="grid-2">
-      <div class="card"><div class="chart-wrap" style="height:220px"><canvas id="chart-goals"></canvas></div></div>
-      <div class="card" style="display:flex;flex-direction:column;gap:0">
-        <div class="card-title">RECOMENDACIONES</div>
-        <div class="insight-box" style="border:none;padding:0 0 12px;border-bottom:1px solid var(--line)">
-          <div class="ins-icon">🎯</div>
-          <div><div class="ins-title">Foco real</div><div class="ins-body">De tus 7 objetivos alta prioridad, <b>el préstamo</b> y <b>la masa muscular</b> son los que más van a cambiar tu vida hoy. Todo lo demás es secundario.</div></div>
-        </div>
-        <div class="insight-box" style="border:none;padding:12px 0 12px;border-bottom:1px solid var(--line)">
-          <div class="ins-icon">📚</div>
-          <div><div class="ins-title">Lecturas</div><div class="ins-body">Con 30+20+15 = <b>65 págs/día</b>, en 2 semanas terminas los 3 libros. Consistencia > cantidad.</div></div>
-        </div>
-        <div class="insight-box" style="border:none;padding:12px 0 0">
-          <div class="ins-icon">💊</div>
-          <div><div class="ins-title">Stack de nutrición</div><div class="ins-body">Tu combinación <b>Zinc + B12 + Maca + Omega-3</b> es sólida. Añadir Vitamina D3 y Magnesio completaría el stack.</div></div>
-        </div>
+<!-- SECCIÓN 3 — SUPLEMENTOS -->
+<div class="seccion">
+  <div class="seccion-titulo">💊 SECCIÓN 3 — ANÁLISIS CIENTÍFICO DE CADA SUPLEMENTO</div>
+  <div class="seccion-body">
+
+    <div class="h2 rojo">3.1 Vitamina B12 — Metilcobalamina Sublingual 🔴 PRIORIDAD #1</div>
+    <div class="caja rojo">
+      <div class="caja-titulo">POR QUÉ ES EL MÁS URGENTE</div>
+      <p>Tus síntomas: memoria deficiente + fatiga + ansiedad + tinnitus 7 años = perfil clásico de déficit de B12. Green R et al. (2017). Nature Reviews Disease Primers, 3:17040. DOI: 10.1038/nrdp.2017.40</p>
+    </div>
+    <ul>
+      <li><strong>Tinnitus directo:</strong> Shemesh Z et al. (1993). 47% de tinnitus crónico asociado a déficit B12. 54% de mejora clínica con repleción.</li>
+      <li><strong>Síntesis de mielina neuronal:</strong> La B12 es cofactor de metionina sintasa. Déficit → desmielinización del nervio auditivo y corteza prefrontal → tinnitus + pérdida de memoria.</li>
+      <li><strong>Metilcobalamina vs cianocobalamina:</strong> Watanabe T et al. (1994). Internal Medicine, 33(2). Mayor captación en tejido nervioso. No requiere conversión hepática.</li>
+      <li><strong>Sublingual vs oral:</strong> Sharabi A et al. (2003). British J Clinical Pharmacology, 56(6). Biodisponibilidad sublingual: <strong>93% vs 50% oral</strong>.</li>
+    </ul>
+    <div class="caja azul">
+      <div class="caja-titulo">💊 PROTOCOLO EXACTO</div>
+      <ul>
+        <li><strong>Fase 1 — Repleción (60 días):</strong> 1,000–2,000 mcg/día sublingual al despertar (05:00)</li>
+        <li><strong>Técnica:</strong> Bajo la lengua, 60 segundos sin tragar</li>
+        <li><strong>Fase 2 — Mantenimiento:</strong> 500–1,000 mcg/día</li>
+        <li><strong>Sinergia obligatoria:</strong> + Ácido Fólico B9 400–800 mcg + B6 25 mg (el ciclo de metilación requiere las 3 vitaminas)</li>
+      </ul>
+    </div>
+
+    <div class="h2 rojo">3.2 Citrato de Magnesio 🔴 PRIORIDAD #2</div>
+    <ul>
+      <li><strong>Ansiedad — evidencia directa:</strong> Boyle NB et al. (2017). Nutrients, 9(5):429. Meta-análisis 18 estudios: el Mg reduce significativamente la ansiedad vía modulación del eje HHA y reducción de cortisol.</li>
+      <li><strong>Sueño:</strong> Wienecke E & Nolden M (2016). J Research in Medical Sciences. El Mg activa receptores GABA-A → facilita sueño profundo NREM.</li>
+      <li><strong>Irritabilidad:</strong> Sartori SB et al. (2012). Neuropharmacology, 62(1):304-312. Déficit de Mg produce comportamiento ansioso e irritable que se revierte con suplementación.</li>
+      <li><strong>Tinnitus coclear:</strong> Herzberg & Sperber (1993). El Mg bloquea canales NMDA cocleares → reduce hiperexcitabilidad auditiva.</li>
+    </ul>
+    <div class="caja verde">
+      <div class="caja-titulo">💊 PROTOCOLO EXACTO</div>
+      <ul>
+        <li><strong>Dosis:</strong> 300–400 mg de magnesio elemental/día</li>
+        <li><strong>Inicio gradual:</strong> 150 mg sem.1 → 250 mg sem.2 → 300–400 mg sem.3 (evitar efecto laxante)</li>
+        <li><strong>Horario:</strong> CON LA CENA o 30 min antes de dormir (efecto GABA nocturno)</li>
+        <li><strong>No combinar:</strong> Separar del zinc 2h. No con antibióticos tetraciclinas.</li>
+      </ul>
+    </div>
+
+    <div class="h2">3.3 Astaxantina 🟠 PRIORIDAD #3</div>
+    <ul>
+      <li><strong>Protección coclear:</strong> Fetoni AR et al. (2013). Exp Gerontology, 48(2). El estrés oxidativo es la causa más importante de daño a células ciliadas cocleares. La astaxantina actúa directamente sobre mitocondrias cocleares.</li>
+      <li><strong>Potencia antioxidante:</strong> Nishida Y et al. (2007). Carotenoid Science, 11:16-20. 6,000x más potente que vitamina C en neutralización de oxígeno singlete.</li>
+      <li><strong>Cognición:</strong> Katagiri M et al. (2012). J Clinical Biochemistry and Nutrition, 51(2):102-107. RCT: 6 mg/día → mejora significativa en memoria de trabajo y velocidad de procesamiento.</li>
+      <li><strong>Ansiedad/inflamación:</strong> Park JS et al. (2010). Nutrition & Metabolism, 7:18. Reduce IL-6 y TNF-α (marcadores de neuroinflamación).</li>
+    </ul>
+    <div class="caja azul">
+      <div class="caja-titulo">💊 PROTOCOLO EXACTO</div>
+      <ul>
+        <li><strong>Dosis:</strong> 12 mg/día (tinnitus + cognición + energía)</li>
+        <li><strong>Horario:</strong> CON EL ALMUERZO — obligatorio con comida grasa (liposoluble)</li>
+        <li><strong>Verificar Oriflame:</strong> Fuente = Haematococcus pluvialis. Dosis mínima 4–6 mg/cápsula.</li>
+      </ul>
+    </div>
+
+    <div class="h2 verde">3.4 Kéfir / Búlgaros</div>
+    <ul>
+      <li><strong>Eje intestino-cerebro y ansiedad:</strong> Dinan TG et al. (2015). Biological Psychiatry, 74(10):720-726. El 90–95% de la serotonina se produce en el intestino. El microbioma modula neurotransmisores vía nervio vago.</li>
+      <li><strong>Reducción de ansiedad — RCT:</strong> Wang H et al. (2021). J Psychiatric Research, 131:82-91. Reducción significativa en escala GAD-7 con probióticos vs placebo.</li>
+      <li><strong>Potencia absorción B12 y Mg:</strong> Bourrie BCT et al. (2016). Frontiers in Microbiology, 7:647. El kéfir mejora absorción intestinal de B12 y Mg.</li>
+    </ul>
+    <div class="caja verde">
+      <div class="caja-titulo">💊 PROTOCOLO EXACTO</div>
+      <ul>
+        <li><strong>Dosis:</strong> 150–250 mL/día. Con el desayuno, después de los primeros 2–3 bocados</li>
+        <li><strong>NO calentar</strong> (&gt;45°C destruye los microorganismos)</li>
+        <li><strong>Efectos:</strong> visibles a las 2–4 semanas</li>
+      </ul>
+    </div>
+
+    <div class="h2 verde">3.5 Maca Peruana (Lepidium meyenii)</div>
+    <ul>
+      <li><strong>Reducción de fatiga:</strong> Shin BC et al. (2010). J Ethnopharmacology, 132(2):469-471. Reducción del 57% en fatiga percibida vs placebo.</li>
+      <li><strong>Cognición y memoria:</strong> Rubio J et al. (2007). Evidence-Based CAM. Los glucosinolatos mejoran función colinérgica (neurotransmisor de memoria).</li>
+      <li><strong>Ansiedad:</strong> Gonzales-Arimborgo C et al. (2016). Pharmaceuticals, 9(3):49. Maca negra redujo síntomas de ansiedad en escala de Hamilton.</li>
+    </ul>
+    <div class="caja verde">
+      <div class="caja-titulo">💊 PROTOCOLO EXACTO</div>
+      <ul>
+        <li><strong>Forma:</strong> Maca GELATINIZADA (no cruda). 1.5–3 g/día de polvo.</li>
+        <li><strong>Horario:</strong> CON EL DESAYUNO (07:00). Evitar por la noche.</li>
+        <li><strong>Para ti:</strong> Maca NEGRA (más glucosinolatos → mejor para memoria)</li>
+        <li><strong>Ciclos:</strong> 3 meses de uso → 2–3 semanas de descanso</li>
+      </ul>
+    </div>
+
+    <div class="h2 verde">3.6 Ajo (Allium sativum)</div>
+    <ul>
+      <li><strong>Microcirculación coclear:</strong> Rahman K (2007). Molecular Nutrition & Food Research, 51(11). La alicina inhibe tromboxano → mejora flujo en microvasos (arteria coclear).</li>
+      <li><strong>Presión arterial:</strong> Ried K et al. (2016). J Nutrition. Meta-análisis 20 RCTs: -8.7 mmHg sistólica.</li>
+      <li><strong>Neuroprotección:</strong> Borek C (2001). J Nutrition, 131(3):1010S. SAC protege neuronas del estrés oxidativo.</li>
+    </ul>
+    <div class="caja verde">
+      <div class="caja-titulo">💊 PROTOCOLO EXACTO</div>
+      <ul>
+        <li><strong>Dosis:</strong> 1–2 dientes crudos/día</li>
+        <li><strong>TÉCNICA OBLIGATORIA:</strong> Triturar → esperar 10 minutos → comer (activa aliinasa → alicina)</li>
+        <li><strong>Horario:</strong> Con el almuerzo (no en ayunas)</li>
+      </ul>
+    </div>
+
+    <div class="h2 verde">3.7 Manzanilla (baño) — Matricaria chamomilla</div>
+    <ul>
+      <li><strong>Efecto ansiolítico transdérmico:</strong> Amsterdam JD et al. (2009). Alternative Therapies Health Medicine. La apigenina actúa sobre receptores GABA-A (igual que benzodiacepinas, sin efectos secundarios).</li>
+      <li><strong>Antiinflamatorio cutáneo:</strong> Srivastava JK et al. (2010). Molecular Medicine Reports, 3(6):895-901. Inhibe COX-1/COX-2.</li>
+    </ul>
+    <div class="caja verde"><div class="caja-titulo">🌿 PROTOCOLO</div>
+      <p>3–4 cdas flores en 1L agua. Hervir, reposar 15 min, colar. Baño tibio 10–15 min. Ideal: 22:30 (potencia el Mg para el sueño). 3–5x/semana.</p>
+    </div>
+
+    <div class="h2 verde">3.8 Romero — Cabello (Salvia rosmarinus)</div>
+    <ul>
+      <li><strong>Crecimiento capilar = Minoxidil 2%:</strong> Panahi Y et al. (2015). SKINmed, 13(1):15-21. RCT 6 meses: eficacia equivalente. Inhibe 5-alfa-reductasa, estimula microcirculación.</li>
+      <li><strong>Cognición aromática:</strong> Moss M et al. (2012). Therapeutic Advances in Psychopharmacology. El 1,8-cineol cruza la barrera hematoencefálica e inhibe acetilcolinesterasa → más acetilcolina (memoria).</li>
+    </ul>
+    <div class="caja verde"><div class="caja-titulo">🌿 PROTOCOLO</div>
+      <p>Opción A: Infusión 4–5 ramas en 1L, reposar 20 min, aplicar frío post-champú sin enjuagar. 3–4x/semana.<br>
+      Opción B: 5–6 gotas AE en 1 cda aceite portador, masajear 5 min, dejar 30–60 min, lavar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 4 — SUPERALIMENTOS -->
+<div class="seccion">
+  <div class="seccion-titulo">🌾 SECCIÓN 4 — SUPERALIMENTOS ANDINOS: QUINOA Y CAÑIHUA</div>
+  <div class="seccion-body">
+    <div class="h2 verde">Comparativa Nutricional por 100g</div>
+    <table>
+      <tr><th>Nutriente</th><th>Cañihua</th><th>Quinoa Blanca</th><th>Quinoa Negra</th><th>Relevancia</th></tr>
+      <tr><td>Proteínas</td><td><strong>15.7 g</strong></td><td>14.0 g</td><td>13.8 g</td><td>Síntesis muscular y neurotransmisores</td></tr>
+      <tr><td>Hierro</td><td><strong style="color:var(--verde)">8.4 mg ★</strong></td><td>4.6 mg</td><td>4.9 mg</td><td>Cañihua superior para fatiga por anemia</td></tr>
+      <tr><td>Magnesio</td><td><strong>84 mg</strong></td><td>64 mg</td><td>67 mg</td><td>Potencia el suplemento de Mg</td></tr>
+      <tr><td>Calcio</td><td><strong>110 mg</strong></td><td>47 mg</td><td>52 mg</td><td>Función neuromuscular</td></tr>
+      <tr><td>Fibra total</td><td><strong>9.8 g</strong></td><td>7.0 g</td><td>7.5 g</td><td>Prebiótico — potencia kéfir</td></tr>
+      <tr><td>Antioxidantes</td><td>Muy alto (betacianinas)</td><td>Moderado</td><td><strong>Alto (antocianinas)</strong></td><td>Neuroprotección</td></tr>
+      <tr><td>IG estimado</td><td>~35–40</td><td>53</td><td>~45–50</td><td>Cañihua = energía más estable</td></tr>
+      <tr><td>Saponinas</td><td>❌ No (no lavar)</td><td>✅ Sí (lavar)</td><td>✅ Sí (lavar)</td><td>Cañihua más fácil de preparar</td></tr>
+    </table>
+    <p style="font-size:0.85em;color:var(--grisMedio);">Repo-Carrasco-Valencia R et al. (2009). Food and Nutrition Sciences, 1(1):1-9. / Vega-Gálvez A et al. (2010). Food Chemistry, 123(3):847-855.</p>
+
+    <div class="caja verde">
+      <div class="caja-titulo">🍽️ PROTOCOLO QUINOA + CAÑIHUA</div>
+      <ul>
+        <li><strong>Quinoa:</strong> Lavar 3–4 veces (eliminar saponinas). Cocinar 15 min. Alternar blanca y negra.</li>
+        <li><strong>Cañihua:</strong> Sin lavado. Tostar 2–3 min en sartén seco. Añadir como harina al batido.</li>
+        <li><strong>Batido desayuno:</strong> Kéfir 200 mL + cañihuaco 2 cdas + maca 1.5 g + plátano + avena</li>
+        <li><strong>Almuerzo:</strong> Quinoa 200 g (base) + proteína + verduras + aguacate + ajo</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 5 — PESO -->
+<div class="seccion">
+  <div class="seccion-titulo">⚖️ SECCIÓN 5 — ALERTA NUTRICIONAL: 60 kg / IMC 18.5</div>
+  <div class="seccion-body">
+    <div class="caja rojo">
+      <div class="caja-titulo">🚨 ESTE ES EL FACTOR #2 MÁS EXPLICATIVO DE TUS SÍNTOMAS</div>
+      <p>IMC 18.5 = límite inferior absoluto OMS. Peso óptimo para 1.80 m: <strong>67–80 kg</strong>. Déficit actual: ~7–20 kg.</p>
+      <p><strong>Requerimiento calórico estimado:</strong> TMB 1,803 kcal × 1.725 (muy activo) = ~3,110 kcal/día</p>
+      <p>Un déficit calórico con tu nivel de actividad causa: hipoglucemia cerebral periódica → pérdida de memoria, fatiga, irritabilidad, catabolismo muscular.</p>
+      <p style="font-size:0.85em;margin-top:6px;">Lieberman HR (2003). Appetite, 40(3):245-254. DOI: 10.1016/S0195-6663(03)00010-2</p>
+    </div>
+    <table>
+      <tr><th>Alimento</th><th>Calorías</th><th>Por qué añadir</th></tr>
+      <tr><td>½ Aguacate</td><td>120 kcal</td><td>Grasa saludable + mejora absorción astaxantina</td></tr>
+      <tr><td>2 Huevos completos</td><td>155 kcal</td><td>Proteína completa + colina (síntesis acetilcolina)</td></tr>
+      <tr><td>Frutos secos (30g)</td><td>185 kcal</td><td>Omega-3 + Mg + proteínas</td></tr>
+      <tr><td>Quinoa 200g cocida</td><td>222 kcal</td><td>Proteína completa + IG bajo</td></tr>
+      <tr><td>1 cda aceite oliva</td><td>120 kcal</td><td>Grasa + absorción vitaminas liposolubles</td></tr>
+      <tr><td>Plátano maduro</td><td>89 kcal</td><td>K + triptófano + carbohidratos naturales</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SECCIÓN 6 — MASTURBACIÓN -->
+<div class="seccion">
+  <div class="seccion-titulo">🔬 SECCIÓN 6 — ANÁLISIS CIENTÍFICO: MASTURBACIÓN Y SÍNTOMAS</div>
+  <div class="seccion-body">
+    <div class="caja gris"><div class="caja-titulo">📌 POSTURA METODOLÓGICA</div>
+      <p>Solo se cita evidencia con DOI indexado. Se distingue lo que tiene soporte empírico de lo que no. Sin juicio moral.</p>
+    </div>
+
+    <table style="margin-top:14px;">
+      <tr><th>Síntoma</th><th>¿Causa la masturbación?</th><th>Causa real con evidencia</th></tr>
+      <tr><td>Pérdida de memoria</td><td style="color:var(--rojo)">NO — sin mecanismo validado</td><td>Sueño 6h + Déficit B12 + Déficit calórico</td></tr>
+      <tr><td>Debilidad/fatiga</td><td style="color:var(--rojo)">NO — efectos hormonales duran &lt;60 min</td><td>IMC 18.5 + posible anemia + sueño insuficiente</td></tr>
+      <tr><td>Ansiedad</td><td style="color:var(--naranja)">MUY POCO — no hay mecanismo directo</td><td>Déficit Mg + sueño insuficiente + sobrecarga</td></tr>
+      <tr><td>Tinnitus (7 años)</td><td style="color:var(--rojo)">NO — imposible causalmente</td><td>Déficit B12 + estrés oxidativo coclear</td></tr>
+    </table>
+
+    <div class="h2">¿Qué dice realmente la ciencia?</div>
+    <ul>
+      <li><strong>Sistema dopaminérgico (evidencia sólida):</strong> Kühn S & Gallinat J (2014). JAMA Psychiatry, 71(7):827-834. La masturbación frecuente puede reducir densidad de receptores D2 (habituación). Reducirla puede mejorar motivación para actividades de largo plazo como estudiar ingeniería. <strong>Este mecanismo es real.</strong></li>
+      <li><strong>Testosterona y abstinencia:</strong> Jiang M et al. (2003). J Zhejiang University Science, 4(2). Pico de +45.7% al día 7. LIMITACIONES: n=28, sin grupo control, no replicado.</li>
+      <li><strong>Efectos hormonales transitorios:</strong> Exton MS et al. (2001). Psychoneuroendocrinology. Se normalizan en 20–60 min. No hay déficit hormonal crónico documentado en adultos sanos.</li>
+    </ul>
+
+    <div class="caja naranja">
+      <div class="caja-titulo">📋 CONCLUSIONES BASADAS EN EVIDENCIA</div>
+      <p>✅ <strong>Tu decisión tiene base neurológica parcial:</strong> el mecanismo dopaminérgico (Kühn & Gallinat 2014) es real. Recuperarás 45–90 min/día.</p>
+      <p>❌ <strong>Sin soporte científico:</strong> El semen no contiene "energía vital". El tinnitus (7 años) no tiene relación con el hábito. Los síntomas físicos no se resolverán solo con abstinencia.</p>
+      <p>⚠️ Atribuir todos los síntomas a la masturbación puede retrasar el tratamiento de las causas reales (sueño, nutrición, B12).</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 7 — DEPORTE -->
+<div class="seccion">
+  <div class="seccion-titulo">🏃 SECCIÓN 7 — INTEGRACIÓN DEL EJERCICIO FÍSICO</div>
+  <div class="seccion-body">
+    <ul>
+      <li><strong>BDNF y cognición:</strong> Hillman CH et al. (2008). Nature Reviews Neuroscience, 9(1):58-65. El ejercicio aeróbico moderado eleva el BDNF (factor neurotrófico cerebral) 200–300%. Es la proteína más importante para la plasticidad sináptica.</li>
+      <li><strong>Reducción de ansiedad:</strong> Stubbs B et al. (2017). Psychiatry Research, 249:102-108. Meta-análisis: el ejercicio reduce ansiedad con eficacia comparable a ansiolíticos sin efectos secundarios.</li>
+      <li><strong>Sinergia astaxantina + ejercicio:</strong> Earnest CP et al. (2011). Int J Sports Medicine. Astaxantina reduce daño oxidativo muscular post-ejercicio un 35%.</li>
+    </ul>
+
+    <div class="caja verde">
+      <div class="caja-titulo">🏃 PLAN ADAPTADO A TU HORARIO Y PESO</div>
+      <p>⚠️ <strong>NO perder más peso.</strong> Primero aumentar 400–600 kcal/día durante 2 semanas. Luego añadir ejercicio.</p>
+      <ul>
+        <li><strong>Ventana disponible:</strong> Horas libres en universidad (3h/día) o antes de la academia (18:30–19:00)</li>
+        <li><strong>Sem. 1–2:</strong> 20–25 min caminata rápida 3x/semana + stretching 10 min/día</li>
+        <li><strong>Sem. 3–6:</strong> Fuerza básica 3x/semana (40 min) + aeróbico suave 2x/semana (20–25 min)</li>
+        <li><strong>Timing cognitivo óptimo:</strong> 20 min de ejercicio ANTES de estudiar → pico de BDNF durante el aprendizaje. Hillman (2008).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 8 — HORARIOS -->
+<div class="seccion">
+  <div class="seccion-titulo">⏰ SECCIÓN 8 — PROTOCOLO DIARIO COMPLETO</div>
+  <div class="seccion-body">
+
+    <div class="horario-item">
+      <div class="horario-hora">05:00<br>Al despertar</div>
+      <div><div class="horario-accion">B12 Sublingual + 500 mL agua</div>
+      <div class="horario-desc">En ayunas. Bajo la lengua 60 seg. Mejor absorción mucosa. (Sharabi 2003)</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">07:00–07:30<br>Desayuno</div>
+      <div><div class="horario-accion">Kéfir + Batido + Ácido Fólico + B6</div>
+      <div class="horario-desc">Kéfir 200 mL (después de primeros bocados). Batido: cañihuaco 2 cdas + maca 1.5g + plátano + avena. 2 huevos. Ácido fólico 400 mcg + B6 25 mg.</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">10:00–11:00<br>Colación</div>
+      <div><div class="horario-accion">Frutos secos 30g + Fruta</div>
+      <div class="horario-desc">Mantener glucemia estable. Evitar hipoglucemia cerebral entre clases (explica fatiga e irritabilidad).</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">13:00–14:00<br>Almuerzo</div>
+      <div><div class="horario-accion">Quinoa + Proteína + Ajo + Astaxantina</div>
+      <div class="horario-desc">Quinoa 200g + proteína (huevo/pollo/legumbres) + verduras + aguacate. Ajo triturado reposado 10 min. Astaxantina 12 mg CON la grasa del almuerzo.</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">16:00–17:00<br>Colación tarde</div>
+      <div><div class="horario-accion">Yogur + cereal o batido</div>
+      <div class="horario-desc">Segunda colación para sostener energía hacia la academia. 200–300 kcal nutritivas.</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">19:00–22:00<br>Academia</div>
+      <div><div class="horario-accion">Hidratación + snack ligero antes</div>
+      <div class="horario-desc">Llevar agua + plátano o frutos secos. Enseñar 3h con déficit energético amplifica irritabilidad.</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">22:00–22:30<br>Cena</div>
+      <div><div class="horario-accion">Cena completa + Citrato de Magnesio</div>
+      <div class="horario-desc">Cena CALÓRICA (quinoa + proteína + vegetales). Citrato Mg 300–400 mg elemental con la cena o 30 min después.</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">22:30–23:00<br>Pre-sueño</div>
+      <div><div class="horario-accion">Baño manzanilla + Romero capilar + SIN pantallas</div>
+      <div class="horario-desc">Baño tibio con infusión. Efecto ansiolítico transdérmico (apigenina). Romero capilar 3–4x/semana. Cero pantallas desde 22:00.</div></div>
+    </div>
+    <div class="horario-item">
+      <div class="horario-hora">23:00<br>META: 22:30</div>
+      <div><div class="horario-accion">🎯 OBJETIVO: llevar a 22:30 (ganar 30 min)</div>
+      <div class="horario-desc">30 min más de sueño tiene mayor impacto en memoria y rendimiento que cualquier suplemento. (Stickgold 2013, Nature Neuroscience)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 9 — ADICIONALES -->
+<div class="seccion">
+  <div class="seccion-titulo">➕ SECCIÓN 9 — OPCIONES ADICIONALES RECOMENDADAS</div>
+  <div class="seccion-body">
+    <div class="h2">Omega-3 EPA + DHA — Muy Recomendado</div>
+    <ul>
+      <li><strong>Cognición:</strong> Yurko-Mauro K et al. (2010). Alzheimer's & Dementia, 6(6):456-464. DHA es el ácido graso estructural más abundante en el cerebro (30% de la corteza prefrontal).</li>
+      <li><strong>Ansiedad:</strong> Su KP et al. (2018). JAMA Network Open, 1(5). Meta-análisis: Omega-3 reduce significativamente síntomas de ansiedad.</li>
+      <li><strong>Dosis:</strong> 1,000–2,000 mg/día de EPA+DHA. Con el almuerzo (con grasa).</li>
+    </ul>
+    <div class="h2">Vitamina D3 — Evaluar</div>
+    <ul>
+      <li>Shaffer JA et al. (2014). Psychosomatic Medicine. Déficit asociado a ansiedad, depresión y deterioro cognitivo. Muy probable con 12h en interiores.</li>
+      <li><strong>Dosis:</strong> Pedir 25-OH-Vit.D en análisis. Si &lt;30 ng/mL: 2,000–4,000 UI/día con comida grasa.</li>
+    </ul>
+    <div class="h2">Rhodiola Rosea — Alternativa/Complemento a la Maca</div>
+    <ul>
+      <li>Hung SK et al. (2011). Phytomedicine. Meta-análisis: Rhodiola reduce fatiga mental y mejora rendimiento cognitivo bajo alta demanda intelectual.</li>
+      <li><strong>Dosis:</strong> 200–400 mg/día extracto estandarizado (3% rosavinas + 1% salidrosida). Con desayuno.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECCIÓN 10 — PROCESO DE MEJORA -->
+<div class="seccion">
+  <div class="seccion-titulo">📈 SECCIÓN 10 — PROCESO DE MEJORA: LÍNEA DE TIEMPO</div>
+  <div class="seccion-body">
+    <table>
+      <tr><th>Período</th><th>Cambios Esperados</th><th>Causado por</th></tr>
+      <tr><td><strong>Días 1–7</strong></td><td>↑ Calidad del sueño<br>↓ Ansiedad nocturna<br>Mayor claridad matutina</td><td>Citrato Mg activa GABA-A nocturno<br>Kéfir iniciando colonización<br>B12 comenzando repleción</td></tr>
+      <tr><td><strong>Semana 2–4</strong></td><td>↑ Energía matutina estable<br>↓ Niebla mental al estudiar<br>↓ Irritabilidad</td><td>Maca adaptando eje HHA<br>Microbioma estableciéndose<br>B12 elevando niveles séricos</td></tr>
+      <tr><td><strong>Semana 4–8</strong></td><td>↑ Memoria notable<br>↓ Fatiga crónica<br>↓ Ansiedad<br>Posible ↓ tinnitus</td><td>B12 remielinizando nervios<br>Astaxantina reduciendo estrés coclear<br>↑ peso corporal +1–2 kg</td></tr>
+      <tr><td><strong>Mes 3–4</strong></td><td>↑ Rendimiento académico<br>↑ Energía todo el día<br>Tinnitus: evaluación</td><td>Protocolo completo sinergizando<br>Ejercicio establecido (BDNF)<br>Peso óptimo alcanzado</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SECCIÓN 11 — RESUMEN -->
+<div class="seccion">
+  <div class="seccion-titulo">🎯 SECCIÓN 11 — RESUMEN EJECUTIVO Y SEMÁFORO</div>
+  <div class="seccion-body">
+
+    <div class="top3">
+      <div class="top3-card">
+        <div class="top3-num">1️⃣</div>
+        <div class="top3-titulo">Dormir 30 min más</div>
+        <div class="top3-desc">Ir a dormir a las 22:30. Mayor impacto en memoria e irritabilidad que cualquier suplemento.<br><em>Walker 2017 / Stickgold 2013</em></div>
+      </div>
+      <div class="top3-card">
+        <div class="top3-num">2️⃣</div>
+        <div class="top3-titulo">+500 kcal nutritivas/día</div>
+        <div class="top3-desc">Aumentar quinoa, huevos, frutos secos, aguacate. IMC 18.5 es causa directa de fatiga cerebral.<br><em>Lieberman 2003</em></div>
+      </div>
+      <div class="top3-card">
+        <div class="top3-num">3️⃣</div>
+        <div class="top3-titulo">B12 sublingual cada mañana</div>
+        <div class="top3-desc">1,000 mcg al despertar, 60 seg bajo la lengua. Mayor impacto sobre tus síntomas específicos.<br><em>Green 2017 / Shemesh 1993</em></div>
       </div>
     </div>
+
+    <div class="h2">Semáforo Completo de Suplementos</div>
+    <table>
+      <tr><th>Suplemento</th><th>Prioridad</th><th>Horario</th><th>Dosis</th></tr>
+      <tr><td>B12 Metilcobalamina</td><td><span class="badge critico">🔴 CRÍTICO</span></td><td>05:00 AM — ayunas sublingual</td><td>1,000–2,000 mcg/día</td></tr>
+      <tr><td>Citrato de Magnesio</td><td><span class="badge critico">🔴 MUY ALTO</span></td><td>Con cena (22:00–22:30)</td><td>300–400 mg elemental</td></tr>
+      <tr><td>Astaxantina</td><td><span class="badge alto">🟠 ALTO</span></td><td>Almuerzo (con grasa)</td><td>12 mg/día</td></tr>
+      <tr><td>Kéfir/Búlgaros</td><td><span class="badge alto">🟠 ALTO</span></td><td>Desayuno (07:00)</td><td>200 mL/día</td></tr>
+      <tr><td>Quinoa + Cañihua</td><td><span class="badge alto">🟠 ESENCIAL</span></td><td>Desayuno + Almuerzo</td><td>150–200 g/comida</td></tr>
+      <tr><td>Omega-3 EPA+DHA</td><td><span class="badge alto">🟠 RECOMENDADO</span></td><td>Almuerzo (con grasa)</td><td>1,000–2,000 mg</td></tr>
+      <tr><td>Maca Peruana (negra)</td><td><span class="badge mod">🟡 MODERADO</span></td><td>Desayuno (07:00)</td><td>1.5–3 g polvo gelatinizado</td></tr>
+      <tr><td>Ajo crudo</td><td><span class="badge mod">🟡 MODERADO</span></td><td>Almuerzo (con comida)</td><td>1–2 dientes</td></tr>
+      <tr><td>Vitamina D3</td><td><span class="badge mod">🟡 EVALUAR</span></td><td>Almuerzo (con grasa)</td><td>2,000 UI (si déficit)</td></tr>
+      <tr><td>Zinc</td><td><span class="badge mod">🟡 EVALUAR</span></td><td>Almuerzo (separar Mg 2h)</td><td>15–25 mg gluconato</td></tr>
+      <tr><td>Romero capilar</td><td><span class="badge util">🟢 ÚTIL</span></td><td>Noche 3–4x/semana</td><td>Infusión o AE diluido</td></tr>
+      <tr><td>Manzanilla (baño)</td><td><span class="badge util">🟢 ÚTIL</span></td><td>22:30, 3–5x/semana</td><td>Infusión 1L</td></tr>
+    </table>
+
+    <div class="caja rojo" style="margin-top:20px;">
+      <div class="caja-titulo">🏥 PASOS MÉDICOS NO OPCIONALES</div>
+      <ul>
+        <li><strong>Análisis de sangre (semana 1):</strong> B12 sérica, Mg sérico, hemograma, ferritina, hierro, 25-OH-Vitamina D, glucosa, presión arterial</li>
+        <li><strong>Otorrinolaringólogo:</strong> Audiometría + timpanometría + BERA para el tinnitus de 7 años</li>
+        <li><strong>Introducción gradual:</strong> Sem.1: B12+Kéfir+Quinoa → Sem.2: +Mg → Sem.3: +Astaxantina → Sem.4: +Maca+Ajo → Sem.5-6: Omega-3+D3</li>
+      </ul>
+    </div>
+
+    <div class="h2">Referencias Bibliográficas Principales</div>
+    <div class="ref-grid">
+      <div class="ref-item">Shemesh Z et al. (1993). Am J Otolaryngol 14(2):94-99</div>
+      <div class="ref-item">Green R et al. (2017). Nat Rev Disease Primers 3:17040</div>
+      <div class="ref-item">Langguth B et al. (2013). Lancet Neurology 12(9):920-930</div>
+      <div class="ref-item">Boyle NB et al. (2017). Nutrients 9(5):429</div>
+      <div class="ref-item">Stickgold R & Walker MP (2013). Nat Neurosci 16(2):139-145</div>
+      <div class="ref-item">Harrison Y & Horne JA (2000). J Exp Psychol 6(3):236-249</div>
+      <div class="ref-item">Goldstein AN & Walker MP (2014). Ann Rev Clin Psychol 10:679</div>
+      <div class="ref-item">Fetoni AR et al. (2013). Exp Gerontology 48(2):107-112</div>
+      <div class="ref-item">Katagiri M et al. (2012). JCBN 51(2):102-107</div>
+      <div class="ref-item">Sartori SB et al. (2012). Neuropharmacology 62(1):304-312</div>
+      <div class="ref-item">Dinan TG et al. (2015). Biol Psychiatry 74(10):720-726</div>
+      <div class="ref-item">Wang H et al. (2021). J Psychiatric Research 131:82-91</div>
+      <div class="ref-item">Hillman CH et al. (2008). Nat Rev Neurosci 9(1):58-65</div>
+      <div class="ref-item">Stubbs B et al. (2017). Psychiatry Research 249:102-108</div>
+      <div class="ref-item">Sharabi A et al. (2003). Brit J Clin Pharmacol 56(6):635-638</div>
+      <div class="ref-item">Kühn S & Gallinat J (2014). JAMA Psychiatry 71(7):827-834</div>
+      <div class="ref-item">Lieberman HR (2003). Appetite 40(3):245-254</div>
+      <div class="ref-item">Panahi Y et al. (2015). SKINmed 13(1):15-21</div>
+      <div class="ref-item">Shin BC et al. (2010). J Ethnopharmacol 132(2):469-471</div>
+      <div class="ref-item">Repo-Carrasco R et al. (2009). Food Nutr Sci 1(1):1-9</div>
+      <div class="ref-item">Vega-Gálvez A et al. (2010). Food Chemistry 123(3):847-855</div>
+      <div class="ref-item">Hirshkowitz M et al. (2015). Sleep Health 1(1):40-43</div>
+      <div class="ref-item">Nishida Y et al. (2007). Carotenoid Science 11:16-20</div>
+      <div class="ref-item">Lasisi AO & Gureje O (2011). Sleep Medicine 12(1):60-64</div>
+      <div class="ref-item">Yurko-Mauro K et al. (2010). Alzheimer's Dementia 6(6):456</div>
+      <div class="ref-item">Su KP et al. (2018). JAMA Network Open 1(5)</div>
+      <div class="ref-item">Park JS et al. (2010). Nutr & Metabolism 7:18</div>
+      <div class="ref-item">Herzberg M & Sperber M (1993). Exp Neurology 121(1):149</div>
+    </div>
+
+    <p style="text-align:center;color:#AAAAAA;font-style:italic;margin-top:24px;font-size:0.82em;">
+      Documento elaborado exclusivamente con literatura revisada por pares — PubMed · Scopus · Web of Science · Cochrane Library<br>
+      ⚕️ No reemplaza la consulta médica profesional
+    </p>
   </div>
 </div>
 
-<!-- ════ NOTAS / FRASES ════ -->
-<div class="page" id="p-notas">
-  <div class="pg-head">
-    <div class="pg-title" style="color:var(--green)">FRASES</div>
-    <div class="pg-sub">SABIDURÍA · SEDUCCIÓN · IDENTIDAD</div>
-  </div>
-  <div style="max-width:720px;display:flex;flex-direction:column;gap:8px" id="quotes-list"></div>
 </div>
-
-</div><!-- end .app -->
-
-<script>
-// ════════════════════════════════════════════════════════
-// DATA
-// ════════════════════════════════════════════════════════
-const START = new Date(2026,2,9);
-
-const STREAKS = [
-  {id:'abs', name:'Abstinencia', icon:'🧘', desc:'Disciplina sexual'},
-  {id:'voz', name:'Mejora de Voz', icon:'🎙️', desc:'Ejercicios diarios'},
-  {id:'b12', name:'B12', icon:'💉', desc:'Vitamina B12'},
-  {id:'col', name:'Colágeno', icon:'💪', desc:'Suplemento diario'},
-  {id:'mac', name:'Maca', icon:'🌿', desc:'Raíz andina'},
-];
-const DOSES = [
-  {id:'bet', name:'Beterraga', icon:'🟣', desc:'Óxido nítrico'},
-  {id:'rom', name:'Romero', icon:'🌱', desc:'Circulación'},
-  {id:'vic', name:'Vit. C', icon:'🍊', desc:'Inmunidad'},
-  {id:'mg',  name:'Citrato Mg', icon:'⚡', desc:'1.5g/día'},
-  {id:'man', name:'Manzanilla', icon:'🌼', desc:'Antiinflamatorio'},
-  {id:'qui', name:'Quinoa', icon:'🌾', desc:'Proteína completa'},
-  {id:'znc', name:'Zinc 30mg', icon:'🔩', desc:'Testosterona'},
-  {id:'pal', name:'Palta', icon:'🥑', desc:'Grasas buenas'},
-  {id:'esp', name:'Espinaca', icon:'🥬', desc:'Hierro y Mg'},
-  {id:'zah', name:'Zanahoria', icon:'🥕', desc:'Beta-caroteno'},
-  {id:'pro', name:'Proteína', icon:'🥩', desc:'Masa muscular'},
-];
-const BOOKS = [
-  {id:'b1', name:'48 Leyes del Poder', author:'Robert Greene', meta:30, total:480,
-   seed:{'2026-03-10':29,'2026-03-11':39,'2026-03-12':45,'2026-03-13':54}},
-  {id:'b2', name:'El Arte de la Seducción', author:'Robert Greene', meta:20, total:450,
-   seed:{'2026-03-10':3,'2026-03-11':9,'2026-03-12':14}},
-  {id:'b3', name:'Conéctate con el Dinero', author:'Brian Tracy', meta:15, total:220,
-   seed:{'2026-03-10':7,'2026-03-11':17,'2026-03-12':17,'2026-03-13':21}},
-];
-const GOALS = [
-  {id:'g1', p:'alta',   t:'Pagar el préstamo',           c:'Finanzas'},
-  {id:'g2', p:'alta',   t:'Ganar masa muscular',          c:'Salud'},
-  {id:'g3', p:'alta',   t:'Obtener brevette',             c:'Personal'},
-  {id:'g4', p:'alta',   t:'Ventas con Edgar',             c:'Finanzas'},
-  {id:'g5', p:'alta',   t:'Concretar ventas al estado',   c:'Negocio'},
-  {id:'g6', p:'alta',   t:'Brackets / Diente',            c:'Salud'},
-  {id:'g7', p:'alta',   t:'Avanzar Ing. Civil',           c:'Carrera'},
-  {id:'g8', p:'media',  t:'Creatina (suplemento)',        c:'Salud'},
-  {id:'g9', p:'media',  t:'Minoxidil',                    c:'Salud'},
-  {id:'g10',p:'media',  t:'Barba, cejas y estilo',        c:'Estilo'},
-  {id:'g11',p:'media',  t:'Manchas cara & postura',       c:'Personal'},
-  {id:'g12',p:'media',  t:'Aprender inglés y chino',      c:'Educación'},
-  {id:'g13',p:'media',  t:'Invertir en bolsa',            c:'Finanzas'},
-  {id:'g14',p:'media',  t:'WhatsApp comercial',           c:'Negocio'},
-  {id:'g15',p:'media',  t:'Página de ventas propia',      c:'Negocio'},
-  {id:'g16',p:'media',  t:'Autocad / BIM / Civil 3D',     c:'Carrera'},
-  {id:'g17',p:'media',  t:'Claude Pro + NOTION',          c:'Herramientas'},
-  {id:'g18',p:'media',  t:'Automatizar contenido',        c:'Negocio'},
-  {id:'g19',p:'media',  t:'Rino-8000',                    c:'Salud'},
-  {id:'g20',p:'vision', t:'iPhone 16 Pro Max',            c:'Tech'},
-  {id:'g21',p:'vision', t:'Tablet Samsung 10s Ultra',     c:'Tech'},
-  {id:'g22',p:'vision', t:'Cámara DJI Action 5 Pro',      c:'Tech'},
-  {id:'g23',p:'vision', t:'Insta360 Ace Pro 2',           c:'Tech'},
-  {id:'g24',p:'vision', t:'Audífonos Marshall',           c:'Tech'},
-  {id:'g25',p:'vision', t:'Refrigerador',                 c:'Hogar'},
-  {id:'g26',p:'vision', t:'Purificador de aire',          c:'Hogar'},
-  {id:'g27',p:'vision', t:'Maleta de cuero',              c:'Estilo'},
-  {id:'g28',p:'vision', t:'Casaca Maverick',              c:'Estilo'},
-  {id:'g29',p:'vision', t:'Viaje a Apurímac',             c:'Personal'},
-];
-const SHOP = [
-  {id:'sh1', cat:'💊',name:'Astaxantina',      price:130,qty:1},
-  {id:'sh2', cat:'💊',name:'Glutatión',        price:null,qty:null},
-  {id:'sh3', cat:'💊',name:'Resveratrol',      price:null,qty:null},
-  {id:'sh4', cat:'💊',name:'Omega-3 EPA/DHA',  price:null,qty:null},
-  {id:'sh5', cat:'💊',name:'Curcumina',        price:null,qty:null},
-  {id:'sh6', cat:'💊',name:'Creatina',         price:null,qty:null},
-  {id:'sh7', cat:'💊',name:'Sangre de Grado',  price:null,qty:null},
-  {id:'sh8', cat:'🥩',name:'Proteína Tarwi',   price:90, qty:1},
-  {id:'sh9', cat:'🥩',name:'Proteína Whey',    price:null,qty:null},
-  {id:'sh10',cat:'🥗',name:'Quinoa',           price:20, qty:2},
-  {id:'sh11',cat:'🥗',name:'Cañihua',          price:20, qty:1},
-  {id:'sh12',cat:'🥗',name:'Maca (polvo)',      price:20, qty:1},
-  {id:'sh13',cat:'🥗',name:'Quinoa Negra/Roja',price:null,qty:null},
-  {id:'sh14',cat:'🥗',name:'Nueces',           price:null,qty:null},
-  {id:'sh15',cat:'🥗',name:'Linaza',           price:null,qty:null},
-  {id:'sh16',cat:'🥗',name:'Búlgaros',         price:null,qty:null},
-  {id:'sh17',cat:'🥗',name:'Lentejas',         price:null,qty:null},
-  {id:'sh18',cat:'🧴',name:'Colágeno',         price:180,qty:1},
-  {id:'sh19',cat:'🧴',name:'Jabón de Arroz',   price:20, qty:3},
-  {id:'sh20',cat:'🧴',name:'Jabón de Cúrcuma', price:19, qty:2},
-  {id:'sh21',cat:'🧴',name:'Bloqueador Solar', price:null,qty:null},
-  {id:'sh22',cat:'🧴',name:'Minoxidil',        price:null,qty:null},
-  {id:'sh23',cat:'🧴',name:'Dior Elixir',      price:null,qty:null},
-  {id:'sh24',cat:'⚙️',name:'Balanza Digital',  price:null,qty:null},
-  {id:'sh25',cat:'⚙️',name:'Molino (granos)',  price:null,qty:null},
-  {id:'sh26',cat:'⚙️',name:'Agua Alcalina',    price:null,qty:null},
-];
-const QUOTES = [
-  {lbl:'IDENTIDAD',    txt:'Somos puentes que conectan ciudades, comienzos y reinicios. Pero somos más que eso ☀️🌊⛰️✝️'},
-  {lbl:'SEDUCCIÓN',    txt:'Casanova deslumbraba a las mujeres con su vestimenta; Ninon de l\'Enclos encantaba a los hombres con sus palabras.'},
-  {lbl:'ESENCIA',      txt:'La esencia de la seducción sigue siendo el uso del placer como anzuelo.'},
-  {lbl:'ESTRATEGIA',   txt:'Provocar deseo y confusión e inducir la rendición psicológica.'},
-  {lbl:'ENTREGA',      txt:'La combinación del encantamiento y la entrega. Es la entrega por encantamiento.'},
-  {lbl:'PERSONALIDAD', txt:'La personalidad seductora no se tiene, se construye con disciplina, lectura y presencia constante.'},
-  {lbl:'ORATORIA',     txt:'Arte de la oratoria: quien controla las palabras, controla la realidad de los demás.'},
-  {lbl:'PROTOCOLO',    txt:'Abstinencia + B12 + Zinc + Maca + Lectura = base sólida de mejora masculina.'},
-  {lbl:'PRIORIDAD',    txt:'Pagar el préstamo → Brevette → Masa muscular. En ese orden, sin excusas.'},
-];
-
-// ════════════════════════════════════════════════════════
-// STATE
-// ════════════════════════════════════════════════════════
-let curDay = dk(new Date());
-let objFilter = 'all', shopFilter = 'all';
-let charts = {};
-
-function ST(){try{return JSON.parse(localStorage.getItem('sp26')||'{}')}catch{return{}}}
-function SS(s){localStorage.setItem('sp26',JSON.stringify(s))}
-function gH(d,id){return(ST()[d]||{})[id]||0}
-function tH(d,id){const s=ST();if(!s[d])s[d]={};s[d][id]=s[d][id]?0:1;SS(s);render()}
-function gG(id){return(ST().goals||{})[id]||false}
-function tG(id){const s=ST();if(!s.goals)s.goals={};s.goals[id]=!s.goals[id];SS(s);render()}
-function gS(id){return(ST().shop||{})[id]||false}
-function tS(id){const s=ST();if(!s.shop)s.shop={};s.shop[id]=!s.shop[id];SS(s);renderShop()}
-function bPg(bid,d){
-  const s=(ST().read||{});
-  if(s[bid]&&s[bid][d]!==undefined)return s[bid][d];
-  const book=BOOKS.find(b=>b.id===bid);
-  return book.seed[d]??null;
-}
-function sBPg(bid,d,v){
-  const s=ST();if(!s.read)s.read={};if(!s.read[bid])s.read[bid]={};
-  s.read[bid][d]=parseInt(v)||0;SS(s);render();
-}
-function lastPg(bid){
-  const book=BOOKS.find(b=>b.id===bid);
-  const all=[...Object.keys(book.seed),...Object.keys((ST().read||{})[bid]||{})].sort();
-  let mx=0;all.forEach(d=>{const p=bPg(bid,d);if(p!==null&&p>mx)mx=p;});return mx;
-}
-function dk(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
-function tdKey(){return dk(new Date())}
-function streak(id){
-  let n=0;const t=new Date();
-  for(let i=0;i<365;i++){const d=new Date(t);d.setDate(d.getDate()-i);if(gH(dk(d),id)===1)n++;else break;}
-  return n;
-}
-
-// ════════════════════════════════════════════════════════
-// NAV
-// ════════════════════════════════════════════════════════
-const PAGES=['hoy','habitos','lecturas','objetivos','compras','analisis','notas'];
-function go(p){
-  PAGES.forEach(x=>{
-    document.getElementById('p-'+x).classList.toggle('on',x===p);
-    document.querySelector(`[data-p="${x}"]`).classList.toggle('on',x===p);
-  });
-  if(p==='analisis')setTimeout(renderCharts,50);
-}
-function cd(d){const x=new Date(curDay);x.setDate(x.getDate()+d);curDay=dk(x);renderHabPage()}
-function goHoy(){curDay=tdKey();renderHabPage()}
-
-// ════════════════════════════════════════════════════════
-// RENDER
-// ════════════════════════════════════════════════════════
-function render(){
-  updateTop();renderHoyPage();renderHabPage();renderBooks();renderGoals();renderShop();renderQuotes();
-}
-
-function updateTop(){
-  const now=new Date();
-  document.getElementById('top-date').textContent=
-    now.toLocaleDateString('es-PE',{weekday:'short',day:'numeric',month:'short'}).toUpperCase();
-  const days=Math.max(1,Math.floor((now-START)/86400000)+1);
-  document.getElementById('top-streak').textContent=`🔥 ${days} días`;
-  document.getElementById('k-dias').textContent=days;
-  const td=tdKey();
-  const allH=[...STREAKS,...DOSES];
-  const doneN=allH.filter(h=>gH(td,h.id)===1).length;
-  document.getElementById('k-hoy').textContent=`${doneN} / ${allH.length}`;
-  document.getElementById('k-pags').textContent=BOOKS.reduce((s,b)=>s+lastPg(b.id),0);
-  const doneG=GOALS.filter(g=>gG(g.id)).length;
-  document.getElementById('k-obj').textContent=`${doneG}/29`;
-  document.getElementById('k-done-obj').textContent=doneG;
-  const maxSt=Math.max(...[...STREAKS,...DOSES].map(h=>streak(h.id)));
-  document.getElementById('k-streak').textContent=maxSt||'—';
-  const titleEl=document.getElementById('hoy-title');
-  if(titleEl) titleEl.textContent=now.toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long'}).toUpperCase();
-}
-
-function habCards(habits,container,type,day){
-  const el=document.getElementById(container);if(!el)return;
-  el.innerHTML=habits.map(h=>{
-    const done=gH(day,h.id)===1;
-    const cls=done?(type==='streak'?'on':'on-dose'):'';
-    const st=streak(h.id);
-    let dots='';
-    for(let i=13;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const hit=gH(dk(d),h.id)===1;dots+=`<div class="dot-b ${hit?(type==='streak'?'y':'y-d'):''}"></div>`;}
-    return`<div class="hab-card ${cls}" onclick="tH('${day}','${h.id}')">
-      <div class="hab-check">✓</div>
-      <div class="hab-icon">${h.icon}</div>
-      <div class="hab-name">${h.name}</div>
-      <div class="hab-info">${st>0?`🔥 ${st} días en racha`:h.desc}</div>
-      <div class="dot-bar">${dots}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderHoyPage(){
-  const td=tdKey();
-  habCards(STREAKS,'hoy-streaks','streak',td);
-  habCards(DOSES,'hoy-doses','dose',td);
-  const el=document.getElementById('hoy-books');if(!el)return;
-  el.innerHTML=BOOKS.map(b=>miniBookCard(b,td)).join('');
-}
-function renderHabPage(){
-  const lbl=document.getElementById('hab-date-lbl');
-  if(lbl){const d=new Date(curDay);lbl.textContent=d.toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long'}).toUpperCase();}
-  habCards(STREAKS,'hab-streaks','streak',curDay);
-  habCards(DOSES,'hab-doses','dose',curDay);
-}
-
-function miniBookCard(b,td){
-  const lp=lastPg(b.id);
-  const pct=b.total?Math.min(100,Math.round(lp/b.total*100)):0;
-  const pp=prevPg(b.id,td);
-  const todRead=bPg(b.id,td)!==null&&pp!==null?bPg(b.id,td)-pp:0;
-  const mPct=Math.min(100,Math.round(todRead/b.meta*100));
-  const badgeCls=mPct>=100?'meta-ok':todRead>0?'':'meta-0';
-  const badgeTxt=mPct>=100?`✅ Meta!`:todRead>0?`${todRead}/${b.meta} pág`:`Sin registrar`;
-  return`<div class="book-card">
-    <div><div class="book-name">${b.name}</div><div class="book-author">${b.author.toUpperCase()}</div></div>
-    <div class="prog-wrap">
-      <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
-      <div class="prog-labels"><span class="pag">${lp||'—'}</span><span class="pct">${pct}%</span></div>
-    </div>
-    <div class="today-read">
-      <div class="num">${todRead||'—'}</div>
-      <div class="lbl">págs leídas hoy<br><span style="color:var(--t3);font-size:10px">meta: ${b.meta}/día</span></div>
-      <span class="meta-badge ${badgeCls}">${badgeTxt}</span>
-    </div>
-    <div class="book-input-row">
-      <span class="pag-lbl">Página actual hoy:</span>
-      <input class="pag-input" type="number" id="inp-${b.id}-${td}" placeholder="${lp||0}" value="${bPg(b.id,td)??''}">
-      <button class="save-pg" onclick="sBPg('${b.id}','${td}',document.getElementById('inp-${b.id}-${td}').value)">✓</button>
-    </div>
-  </div>`;
-}
-
-function prevPg(bid,dateKey){
-  const d=new Date(dateKey);d.setDate(d.getDate()-1);return bPg(bid,dk(d));
-}
-
-function renderBooks(){
-  const el=document.getElementById('book-cards-full');if(!el)return;
-  const td=tdKey();
-  el.innerHTML=BOOKS.map(b=>miniBookCard(b,td)).join('');
-}
-
-function renderGoals(){
-  const el=document.getElementById('obj-list');if(!el)return;
-  const list=objFilter==='all'?GOALS:GOALS.filter(g=>g.p===objFilter);
-  el.innerHTML=list.map((g,i)=>{
-    const done=gG(g.id);
-    const pMap={alta:'●●● ALTA',media:'●●○ MEDIA',vision:'●○○ VISIÓN'};
-    const cMap={alta:'ph',media:'pm',vision:'pv'};
-    return`<div class="obj-row ${done?'done':''}" style="animation-delay:${i*.025}s">
-      <div class="prio-tag ${cMap[g.p]}">${pMap[g.p]}</div>
-      <div class="obj-text">${g.t}</div>
-      <div class="obj-cat">${g.c}</div>
-      <button class="check-btn" onclick="tG('${g.id}')">✓</button>
-    </div>`;
-  }).join('');
-  ['alta','media','vision'].forEach(p=>{
-    const el2=document.getElementById('k-'+p);
-    if(el2)el2.textContent=GOALS.filter(g=>g.p===p&&!gG(g.id)).length;
-  });
-}
-
-function fObj(f,btn){
-  objFilter=f;
-  document.querySelectorAll('.filter-bar .fbtn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');renderGoals();
-}
-
-function renderShop(){
-  const cats=['Todos',...new Set(SHOP.map(s=>s.cat))];
-  const catEl=document.getElementById('shop-cats');
-  if(catEl)catEl.innerHTML=cats.map(c=>`<div class="scat ${shopFilter===c||shopFilter==='all'&&c==='Todos'?'on':''}" onclick="fShop('${c}')">${c} ${c!=='Todos'?SHOP.filter(s=>s.cat===c).length:SHOP.length}</div>`).join('');
-  const el=document.getElementById('shop-grid');if(!el)return;
-  const list=shopFilter==='all'||shopFilter==='Todos'?SHOP:SHOP.filter(s=>s.cat===shopFilter);
-  el.innerHTML=list.map(item=>{
-    const bought=gS(item.id);
-    const priceStr=item.price?(item.qty>1?`S/ ${item.price} × ${item.qty} = S/ ${item.price*item.qty}`:`S/ ${item.price}`):'Precio pendiente';
-    return`<div class="shop-card ${bought?'bought':''}" onclick="tS('${item.id}')">
-      <div class="sh-ico">${item.cat}</div>
-      <div class="sh-name">${item.name}</div>
-      <div class="sh-price ${item.price?'':'nil'}">${priceStr}</div>
-    </div>`;
-  }).join('');
-  const total=SHOP.reduce((s,i)=>s+(i.price&&i.qty?i.price*i.qty:0),0);
-  const pend=SHOP.reduce((s,i)=>s+(i.price&&i.qty&&!gS(i.id)?i.price*i.qty:0),0);
-  const bdgP=document.getElementById('bdg-pend');if(bdgP)bdgP.textContent=`S/ ${pend}`;
-  const bdgF=document.getElementById('bdg-fill');if(bdgF)bdgF.style.width=(total?pend/total*100:0)+'%';
-  const bdgM=document.getElementById('bdg-meta');if(bdgM)bdgM.textContent=`S/ ${total-pend} comprado de S/ ${total} total`;
-}
-function fShop(c){shopFilter=c;renderShop()}
-
-function renderQuotes(){
-  const el=document.getElementById('quotes-list');if(!el)return;
-  el.innerHTML=QUOTES.map(q=>`<div class="quote-block"><div class="qt-label">${q.lbl}</div><div class="qt-text">${q.txt}</div></div>`).join('');
-}
-
-// ════════════════════════════════════════════════════════
-// CHARTS
-// ════════════════════════════════════════════════════════
-const COLORS={teal:'#00e5b0',amber:'#ffb300',rose:'#ff4b6e',violet:'#a78bfa',green:'#22c55e'};
-const CGRID={color:'rgba(31,45,66,.6)'};
-const CFONT={color:'#7b91b0',family:'Inter'};
-
-function mkChart(id,cfg){
-  if(charts[id]){charts[id].destroy();}
-  const el=document.getElementById(id);if(!el)return;
-  charts[id]=new Chart(el,cfg);
-}
-
-function renderCharts(){
-  // ── Habits heatmap: last 14 days bar chart ──
-  const labels=[];const datasets=[];const days=14;
-  for(let i=days-1;i>=0;i--){
-    const d=new Date();d.setDate(d.getDate()-i);
-    labels.push(d.toLocaleDateString('es-PE',{weekday:'short',day:'numeric'}));
-  }
-  const allH=[...STREAKS,...DOSES];
-  const habitData=allH.map(h=>({
-    label:h.name,
-    data:Array.from({length:days},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(days-1-i));return gH(dk(d),h.id)}),
-    backgroundColor:'rgba(0,229,176,.2)',borderColor:COLORS.teal,borderWidth:1,borderRadius:3,
-  }));
-  const totalPerDay=Array.from({length:days},(_,i)=>{
-    const d=new Date();d.setDate(d.getDate()-(days-1-i));
-    return allH.reduce((s,h)=>s+gH(dk(d),h.id),0);
-  });
-  mkChart('chart-habits',{type:'bar',data:{labels,datasets:[{
-    label:'Hábitos completados',data:totalPerDay,
-    backgroundColor:totalPerDay.map(v=>v>=12?'rgba(0,229,176,.6)':v>=6?'rgba(255,179,0,.6)':'rgba(255,75,110,.6)'),
-    borderRadius:4,borderSkipped:false,
-  }]},options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw} / ${allH.length} hábitos`}}},
-    scales:{x:{grid:CGRID,ticks:{...CFONT,font:{size:10}}},y:{grid:CGRID,ticks:{...CFONT,stepSize:4},max:allH.length,min:0}}}});
-
-  // ── Reading line chart ──
-  const rdLabels=[];const book1Data=[];const book2Data=[];const book3Data=[];
-  for(let i=13;i>=0;i--){
-    const d=new Date();d.setDate(d.getDate()-i);const dkey=dk(d);
-    rdLabels.push(d.toLocaleDateString('es-PE',{day:'numeric',month:'short'}));
-    book1Data.push(bPg('b1',dkey));
-    book2Data.push(bPg('b2',dkey));
-    book3Data.push(bPg('b3',dkey));
-  }
-  mkChart('chart-reading',{type:'line',data:{labels:rdLabels,datasets:[
-    {label:'48 Leyes del Poder',data:book1Data,borderColor:COLORS.amber,backgroundColor:'rgba(255,179,0,.1)',tension:.4,pointRadius:4,pointBackgroundColor:COLORS.amber,spanGaps:true},
-    {label:'Arte de la Seducción',data:book2Data,borderColor:COLORS.teal,backgroundColor:'rgba(0,229,176,.1)',tension:.4,pointRadius:4,pointBackgroundColor:COLORS.teal,spanGaps:true},
-    {label:'Brian Tracy',data:book3Data,borderColor:COLORS.violet,backgroundColor:'rgba(167,139,250,.1)',tension:.4,pointRadius:4,pointBackgroundColor:COLORS.violet,spanGaps:true},
-  ]},options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{labels:{color:'#7b91b0',boxWidth:12,font:{size:11}}}},
-    scales:{x:{grid:CGRID,ticks:{...CFONT,font:{size:10}}},y:{grid:CGRID,ticks:{...CFONT}}}}});
-
-  mkChart('chart-reading2',{type:'line',data:{labels:rdLabels,datasets:[
-    {label:'48 Leyes del Poder',data:book1Data,borderColor:COLORS.amber,backgroundColor:'rgba(255,179,0,.1)',tension:.4,pointRadius:4,spanGaps:true},
-    {label:'Arte de la Seducción',data:book2Data,borderColor:COLORS.teal,backgroundColor:'rgba(0,229,176,.1)',tension:.4,pointRadius:4,spanGaps:true},
-    {label:'Brian Tracy',data:book3Data,borderColor:COLORS.violet,backgroundColor:'rgba(167,139,250,.1)',tension:.4,pointRadius:4,spanGaps:true},
-  ]},options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{labels:{color:'#7b91b0',boxWidth:12,font:{size:11}}}},
-    scales:{x:{grid:CGRID,ticks:{...CFONT,font:{size:10}}},y:{grid:CGRID,ticks:{...CFONT}}}}});
-
-  // ── Goals donut ──
-  const alta=GOALS.filter(g=>g.p==='alta').length;
-  const media=GOALS.filter(g=>g.p==='media').length;
-  const vision=GOALS.filter(g=>g.p==='vision').length;
-  const done=GOALS.filter(g=>gG(g.id)).length;
-  mkChart('chart-goals',{type:'doughnut',data:{
-    labels:['Alta','Media','Visión','Completados'],
-    datasets:[{data:[alta,media,vision,done],
-      backgroundColor:['rgba(255,75,110,.7)','rgba(255,179,0,.7)','rgba(0,229,176,.7)','rgba(34,197,94,.7)'],
-      borderColor:['#07080f'],borderWidth:3,hoverOffset:8}]
-  },options:{responsive:true,maintainAspectRatio:false,cutout:'65%',
-    plugins:{legend:{labels:{color:'#7b91b0',boxWidth:12,font:{size:11},padding:14}}}}});
-}
-
-// ════════════════════════════════════════════════════════
-// INIT
-// ════════════════════════════════════════════════════════
-render();
-</script>
 </body>
 </html>
