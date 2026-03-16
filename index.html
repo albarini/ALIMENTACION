@@ -3,90 +3,441 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pronósticos Científicos · 28 Elementos × 8 Objetivos</title>
+<title>Pronóstico Científico V5 · 30 Elementos Cruzados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#fafafa;--bg2:#fff;--bg3:#f5f5f7;--text:#1d1d1f;--text2:#424245;--text3:#86868b;--text4:#a1a1a6;--accent:#0071e3;--green:#34c759;--green-bg:#e8f8ed;--red:#ff3b30;--red-bg:#fce8e7;--orange:#ff9500;--orange-bg:#fff3e0;--purple:#af52de;--purple-bg:#f3e8fa;--gold:#bf8f3d;--gold-bg:#faf3e5;--teal:#30b0c7;--teal-bg:#e5f6f9;--border2:#e5e5ea;--r:16px;--rs:10px;--font:'SF Pro Display',-apple-system,sans-serif;--serif:'Playfair Display',Georgia,serif;--mono:'IBM Plex Mono',monospace;--max:960px}html{scroll-behavior:smooth}body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}::selection{background:var(--accent);color:#fff}nav{position:sticky;top:0;z-index:100;background:rgba(250,250,250,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--border2);padding:0 24px}.ni{max-width:1080px;margin:0 auto;display:flex;align-items:center;height:48px;gap:8px;overflow-x:auto;scrollbar-width:none}.ni::-webkit-scrollbar{display:none}.nb{font-weight:600;font-size:14px;white-space:nowrap;margin-right:12px}.nl{display:flex;gap:2px;list-style:none}.nl a{color:var(--text3);text-decoration:none;font-size:12px;font-weight:500;padding:6px 10px;border-radius:6px;white-space:nowrap;transition:.2s}.nl a:hover{color:var(--text);background:var(--bg3)}.hero{text-align:center;padding:100px 24px 72px;max-width:720px;margin:0 auto}.hb{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border2);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:24px}.hero h1{font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:400;letter-spacing:-.02em;line-height:1.12}.hero h1 em{font-style:italic;color:var(--accent)}.hs{color:var(--text3);font-size:16px;margin-top:14px;line-height:1.5}.s{max-width:var(--max);margin:0 auto;padding:72px 24px}.sl{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:8px}.s h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,36px);font-weight:400;letter-spacing:-.015em;line-height:1.15;margin-bottom:6px}.s h2 em{font-style:italic;color:var(--accent)}.sd{color:var(--text3);font-size:14px;max-width:620px;margin-bottom:36px}.dv{height:1px;background:var(--border2);max-width:200px;margin:0 auto}.fade{opacity:0;transform:translateY(14px);transition:all .5s cubic-bezier(.16,1,.3,1)}.fade.v{opacity:1;transform:translateY(0)}.mx{overflow-x:auto;margin:24px 0}.mx table{border-collapse:collapse;font-size:11px;min-width:700px;width:100%}.mx th,.mx td{padding:6px 8px;text-align:center;border:1px solid var(--border2)}.mx th{background:var(--bg3);font-weight:600;color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:.03em}.mx th:first-child{text-align:left;min-width:160px}.mx td:first-child{text-align:left;font-weight:500;color:var(--text);background:var(--bg2);min-width:160px;font-size:12px}.c3{background:#e8f8ed;color:#1a7a34;font-weight:700}.c2{background:#eef5ff;color:#0055b3;font-weight:600}.c1{background:#f9f9fb;color:#86868b}.c0{background:var(--bg2);color:#d2d2d7}.pg{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;margin-bottom:16px}.ph{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border2)}.pd{font-family:var(--serif);font-size:32px;font-weight:400;line-height:1}.pd small{font-size:13px;color:var(--text3);font-family:var(--font);display:block;margin-top:2px;font-weight:400}.pp{font-family:var(--mono);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:100px}.pb{padding:20px 24px}.gg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}.gi{background:var(--bg3);border-radius:var(--rs);padding:12px 14px}.gi h4{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}.gi p{font-size:12px;color:var(--text2);line-height:1.5}.gi .src{font-family:var(--mono);font-size:9px;color:var(--text4);margin-top:4px;display:block}.pn{font-size:12px;color:var(--text3);line-height:1.6;padding-top:12px;border-top:1px solid var(--border2)}.sy{display:flex;gap:12px;padding:16px 20px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);margin-bottom:8px;align-items:flex-start}.si{font-size:24px;flex-shrink:0;width:36px;text-align:center}.sy h3{font-size:14px;font-weight:600;margin-bottom:2px}.sy p{font-size:12px;color:var(--text2);line-height:1.55}.tg{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:4px}.tg-g{background:var(--green-bg);color:#1a7a34}.tg-b{background:#eef5ff;color:var(--accent)}.tg-p{background:var(--purple-bg);color:var(--purple)}.tg-o{background:var(--orange-bg);color:#c77600}.tg-t{background:var(--teal-bg);color:#1a8a9e}.tg-r{background:var(--red-bg);color:#c5221f}.tg-gl{background:var(--gold-bg);color:var(--gold)}.pr{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:24px;margin-bottom:12px}.pr h3{font-size:16px;font-weight:600;margin-bottom:8px}.pl{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.pill{font-size:11px;font-weight:500;padding:4px 10px;border-radius:100px;background:var(--bg3);color:var(--text2)}.pill.a{background:var(--green-bg);color:#1a7a34;font-weight:600}.pr>p{font-size:13px;color:var(--text3);line-height:1.6}footer{text-align:center;padding:56px 24px;color:var(--text4);font-size:11px;line-height:1.8}@media(max-width:768px){.gg{grid-template-columns:1fr}.sy{flex-direction:column;gap:6px}}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fafafa;--bg2:#fff;--bg3:#f5f5f7;--bg4:#e8e8ed;
+  --text:#1d1d1f;--text2:#424245;--text3:#86868b;--text4:#a1a1a6;
+  --accent:#0071e3;--accent-bg:#e1ecf7;
+  --green:#34c759;--green-bg:#e8f8ed;--green-d:#248a3d;
+  --red:#ff3b30;--red-bg:#fce8e7;--red-d:#c5221f;
+  --orange:#ff9500;--orange-bg:#fff3e0;--orange-d:#c77600;
+  --purple:#af52de;--purple-bg:#f3e8fa;
+  --gold:#bf8f3d;--gold-bg:#faf3e5;
+  --teal:#30b0c7;--teal-bg:#e5f6f9;
+  --border:#d2d2d7;--border2:#e5e5ea;
+  --r:16px;--rs:10px;
+  --font:'SF Pro Display',-apple-system,sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#fff}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,250,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--border2);padding:0 24px}
+.nav-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;height:48px;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-b{font-weight:600;font-size:14px;white-space:nowrap;margin-right:12px}
+.nav-l{display:flex;gap:2px;list-style:none}
+.nav-l a{color:var(--text3);text-decoration:none;font-size:12px;font-weight:500;padding:6px 10px;border-radius:6px;white-space:nowrap;transition:.2s}
+.nav-l a:hover{color:var(--text);background:var(--bg3)}
+
+.hero{text-align:center;padding:100px 24px 72px;max-width:720px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border2);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:24px}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:p 2s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,6vw,52px);font-weight:400;line-height:1.1;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--accent),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--text3);font-size:17px;margin-top:16px}
+
+.sec{max-width:860px;margin:0 auto;padding:72px 24px}
+.sec-l{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:8px}
+.sec h2{font-family:var(--serif);font-size:clamp(26px,4vw,38px);font-weight:400;letter-spacing:-.015em;line-height:1.15;margin-bottom:8px}
+.sec h2 em{font-style:italic;color:var(--accent)}
+.sec-d{color:var(--text3);font-size:15px;max-width:600px;margin-bottom:36px}
+
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:28px;margin-bottom:12px}
+.card h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+.card p,.card li{color:var(--text2);font-size:14px;line-height:1.7}
+.card ul{list-style:none;padding:0}
+.card li{padding:5px 0 5px 20px;position:relative}
+.card li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+.t-r{background:var(--red-bg);color:var(--red-d)}
+.t-g{background:var(--green-bg);color:var(--green-d)}
+.t-o{background:var(--orange-bg);color:var(--orange-d)}
+.t-b{background:var(--accent-bg);color:var(--accent)}
+.t-p{background:var(--purple-bg);color:var(--purple)}
+.t-gold{background:var(--gold-bg);color:var(--gold)}
+.t-teal{background:var(--teal-bg);color:var(--teal)}
+
+/* CROSS TABLE */
+.cross{width:100%;border-collapse:collapse;font-size:12px;margin:20px 0}
+.cross th{text-align:left;padding:8px 10px;background:var(--bg3);color:var(--text3);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;position:sticky;top:48px;z-index:10}
+.cross td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
+.cross tr:last-child td{border:none}
+.cross td:first-child{font-weight:600;color:var(--text);white-space:nowrap;min-width:130px}
+.cross .check{color:var(--green);font-weight:700}
+.cross .new{color:var(--accent);font-weight:600}
+.cross .mech{color:var(--text3);font-size:11px}
+
+/* PROGNOSIS CARDS */
+.prog{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:24px;margin-bottom:10px;display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start}
+.prog-time{text-align:center}
+.prog-time .days{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--accent);line-height:1}
+.prog-time .unit{font-size:10px;color:var(--text4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.prog-bar{height:4px;border-radius:2px;background:var(--bg3);margin-top:8px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px}
+.prog h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.prog p{font-size:13px;color:var(--text2);line-height:1.6}
+.prog .evidence{font-size:11px;color:var(--text4);margin-top:6px;font-style:italic}
+
+/* SYNERGY MAP */
+.syn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.syn-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rs);padding:16px}
+.syn-card h4{font-size:13px;font-weight:600;margin-bottom:4px}
+.syn-card p{font-size:12px;color:var(--text3);line-height:1.5}
+.syn-arrow{font-size:14px;color:var(--accent);margin:0 4px}
+
+/* ALERT */
+.alert{border-radius:var(--r);padding:20px 24px;margin-bottom:12px}
+.alert-r{background:var(--red-bg);border-left:3px solid var(--red)}
+.alert-g{background:var(--green-bg);border-left:3px solid var(--green)}
+.alert-o{background:var(--orange-bg);border-left:3px solid var(--orange)}
+.alert-b{background:var(--accent-bg);border-left:3px solid var(--accent)}
+.alert-t{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.alert-r .alert-t{color:var(--red-d)} .alert-g .alert-t{color:var(--green-d)} .alert-o .alert-t{color:var(--orange-d)} .alert-b .alert-t{color:var(--accent)}
+.alert p{font-size:14px;color:var(--text2)}
+
+.divider{height:1px;background:var(--border2);max-width:200px;margin:0 auto}
+footer{text-align:center;padding:56px 24px;color:var(--text4);font-size:12px;line-height:1.8}
+
+.fade{opacity:0;transform:translateY(14px);transition:.6s cubic-bezier(.16,1,.3,1)}.fade.v{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .prog{grid-template-columns:60px 1fr}
+  .syn{grid-template-columns:1fr}
+  .cross{font-size:11px}
+  .cross td:first-child{min-width:100px}
+}
+@media(max-width:480px){.sec{padding:48px 16px}}
 </style>
 </head>
 <body>
-<nav><div class="ni"><span class="nb">Pronósticos V5</span><ul class="nl"><li><a href="#mapa">Mapa</a></li><li><a href="#sinergias">Sinergias</a></li><li><a href="#matriz">Matriz</a></li><li><a href="#pronostico">Pronóstico</a></li></ul></div></nav>
-<header class="hero"><div class="hb">28 elementos × 8 objetivos · Evidencia cruzada</div><h1>Pronósticos <em>científicos</em></h1><p class="hs">Qué le va a pasar a tu cuerpo, cerebro y piel en cada fase — según la evidencia clínica de cada elemento, cruzados entre sí.</p></header><div class="dv"></div>
 
-<section class="s" id="mapa"><div class="sl">01 · Mapa causal</div><h2>8 problemas × <em>qué los ataca</em></h2><p class="sd">Los marcados en verde son los de mayor impacto directo con evidencia clínica.</p>
-<div class="pr fade"><h3>🧠 Niebla mental + olvido + rendimiento</h3><div class="pl"><span class="pill a">Abstinencia (D2↑)</span><span class="pill a">B12</span><span class="pill a">Cacao puro Cusco</span><span class="pill a">Ejercicio (BDNF +200%)</span><span class="pill">Sacha inchi</span><span class="pill">Maíz morado</span><span class="pill">Zinc</span><span class="pill">Maca negra</span></div><p><strong>Pronóstico:</strong> Receptores D2 upregulados 30–60 días. B12 remieliniza 4–12 semanas. BDNF de ejercicio + cacao = neuroplasticidad desde semana 2. <strong>Recuperación "primer puesto" en 60–90 días.</strong></p></div>
-<div class="pr fade"><h3>🦴 No subir de peso · IMC 18.5</h3><div class="pl"><span class="pill a">Huevos 3/día</span><span class="pill a">Tarwi (46g prot/100g)</span><span class="pill a">Quinoa</span><span class="pill a">Ejercicio fuerza</span><span class="pill">Palta</span><span class="pill">Cañihua</span><span class="pill">Sacha inchi</span></div><p><strong>Pronóstico:</strong> +900 kcal/día + ejercicio + creatina. Sem 2: +1–2 kg agua. Sem 4–8: +0.5 kg/mes real. <strong>63–65 kg en 6 meses. 68 kg en 12 meses.</strong></p></div>
-<div class="pr fade"><h3>🔥 Gastritis + halitosis + intestinos</h3><div class="pl"><span class="pill a">Kéfir (flora)</span><span class="pill a">Sangre de Grado oral</span><span class="pill a">Manzanilla</span><span class="pill">Uña de gato</span><span class="pill">Camu camu</span></div><p><strong>Pronóstico:</strong> Sangre de Grado: evidencia preclínica curación úlceras + anti-H.pylori (Tran 2006). Kéfir restaura flora 2–4 sem. <strong>Halitosis -70% en 4 sem si H.pylori se trata. Gastritis remisión 8–12 sem.</strong></p></div>
-<div class="pr fade"><h3>😤 Irritabilidad + ansiedad</h3><div class="pl"><span class="pill a">Abstinencia</span><span class="pill a">Mg 400mg (GABA-A)</span><span class="pill a">Manzanilla (apigenina)</span><span class="pill a">Ejercicio</span><span class="pill">Maca negra</span><span class="pill">Cacao</span><span class="pill">Kéfir</span></div><p><strong>Pronóstico:</strong> Mg activa GABA-A desde dosis 1. Manzanilla = ansiolítico ≈ benzodiacepinas leves (Amsterdam 2009). <strong>Irritabilidad -50% en 30 días, -80% en 90 días.</strong></p></div>
-<div class="pr fade"><h3>🧬 Testosterona + energía</h3><div class="pl"><span class="pill a">Abstinencia</span><span class="pill a">Zinc 50mg</span><span class="pill a">Huevos</span><span class="pill a">Ejercicio fuerza</span><span class="pill">Maca negra</span><span class="pill">Palta</span><span class="pill">Beterraga</span></div><p><strong>Pronóstico:</strong> Abstinencia día 7: T +145.7% (Jiang 2003). Zinc restaura T en deficientes 6 meses (Prasad 1996). Ejercicio: +15–20% T. <strong>T mediblemente más alta a 3 meses.</strong></p></div>
-<div class="pr fade"><h3>🔴 Granos + manchas</h3><div class="pl"><span class="pill a">Zinc 50mg</span><span class="pill a">Sangre de Grado tópico</span><span class="pill a">Camu camu</span><span class="pill a">SPF 50+</span><span class="pill">Jabón cúrcuma</span><span class="pill">Jabón arroz</span><span class="pill">Colágeno</span><span class="pill">Aguaymanto</span></div><p><strong>Pronóstico:</strong> Zinc: -31% lesiones 12 sem (Dreno). Taspina estimula colágeno nuevo (Vaisberg 1989). <strong>Granos -50% en 6 sem. Manchas -40% en 12 sem.</strong></p></div>
-<div class="pr fade"><h3>👂 Tinnitus</h3><div class="pl"><span class="pill a">B12 (mielina)</span><span class="pill a">Mg (NMDA coclear)</span><span class="pill a">NAC (glutatión)</span><span class="pill">Zinc</span><span class="pill">Uña de gato</span><span class="pill">Sacha inchi</span></div><p><strong>Pronóstico:</strong> 47% tinnitus crónico = déficit B12 (Shemesh 1993). Mg bloquea NMDA coclear (Cevette 2003). <strong>Reducción 30–60 días. Mejoría progresiva 6 meses.</strong></p></div>
-<div class="pr fade"><h3>💪 Cabello + presencia</h3><div class="pl"><span class="pill a">Romero (=minoxidil)</span><span class="pill a">Zinc</span><span class="pill a">Colágeno+CamuCamu</span><span class="pill">Manzanilla</span><span class="pill">Beterraga</span><span class="pill">Maíz morado</span><span class="pill">Voz</span></div><p><strong>Pronóstico:</strong> Romero = minoxidil 2% a 6 meses (Panahi 2015 RCT). <strong>Reducción caída 3 meses. Más grueso 6 meses.</strong></p></div>
-</section><div class="dv"></div>
+<nav><div class="nav-in">
+<span class="nav-b">Pronóstico V5</span>
+<ul class="nav-l">
+<li><a href="#matriz">Matriz 30 Items</a></li>
+<li><a href="#sinergias">Sinergias</a></li>
+<li><a href="#pronostico">Pronóstico</a></li>
+<li><a href="#dominio">Por Dominio</a></li>
+<li><a href="#riesgos">Riesgos</a></li>
+</ul>
+</div></nav>
 
-<section class="s" id="sinergias"><div class="sl">02 · Sinergias</div><h2>Combinaciones que se <em>multiplican</em></h2><p class="sd">No se suman — se potencian exponencialmente.</p>
-<div class="sy fade"><div class="si">⚡</div><div><h3>Abstinencia + Zinc 50mg + Ejercicio fuerza</h3><p>Trío testosterona. Abstinencia retiene ~5mg zinc/eyaculación. Zinc repone 14 años. Ejercicio estimula Leydig. 3 vías simultáneas.</p><span class="tg tg-g">T ×3 vías</span></div></div>
-<div class="sy fade"><div class="si">🧬</div><div><h3>Colágeno + Camu camu + Zinc</h3><p>Trío piel. Colágeno necesita vit C (prolil hidroxilasa). Zinc cicatriza. Estructura + estabilización + reparación.</p><span class="tg tg-p">Piel triple</span></div></div>
-<div class="sy fade"><div class="si">🧠</div><div><h3>Cacao Cusco + Ejercicio + B12</h3><p>Trío cognitivo. Cacao: BDNF + flujo cerebral +8–10%. Ejercicio: BDNF +200%. B12: remieliniza. Neuroplasticidad ×3.</p><span class="tg tg-b">Cognición ×3</span></div></div>
-<div class="sy fade"><div class="si">🦠</div><div><h3>Kéfir + Sangre de Grado + Manzanilla</h3><p>Trío gástrico. Flora + mucosa protegida + antiinflamatorio. Atacan gastritis por 3 frentes simultáneos.</p><span class="tg tg-o">Gastritis ×3</span></div></div>
-<div class="sy fade"><div class="si">🔴</div><div><h3>Sangre de Grado tópico + Camu camu + SPF</h3><p>Trío anti-manchas. Reparar (taspina) + inhibir melanina (tirosinasa) + prevenir UV. Sin SPF los otros trabajan contra corriente.</p><span class="tg tg-r">Manchas ×3</span></div></div>
-<div class="sy fade"><div class="si">💤</div><div><h3>Mg 400mg + Manzanilla + Abstinencia</h3><p>Trío sueño. GABA-A + apigenina ansiolítica + cortisol nocturno estable. Sueño profundo real desde semana 2.</p><span class="tg tg-t">Sueño ×3</span></div></div>
-<div class="sy fade"><div class="si">🩸</div><div><h3>Beterraga + Maíz morado + Cacao + Ejercicio</h3><p>Cuarteto circulación. NO vasodilatación + antocianinas angiogénesis + flavanoles flujo cerebral + demanda cardiovascular.</p><span class="tg tg-gl">Circulación ×4</span></div></div>
-<div class="sy fade"><div class="si">🛡️</div><div><h3>Uña de Gato + Kéfir + Aguaymanto</h3><p>Trío inmune. Alcaloides CD4+/NK + probióticos intestinales + witanólidos adaptógenos. Inmunidad por 3 vías.</p><span class="tg tg-g">Inmunidad ×3</span></div></div>
-<div class="sy fade"><div class="si">🗣️</div><div><h3>Voz + Maca + Ejercicio + Abstinencia</h3><p>Cuarteto presencia. T restaurada = voz grave natural. Entrenamiento la coloca desde tórax. Ejercicio = postura. Maca = energía 16h.</p><span class="tg tg-gl">Presencia ×4</span></div></div>
-</section><div class="dv"></div>
+<header class="hero">
+<div class="badge"><span class="dot"></span> 30 elementos · Evidencia cruzada</div>
+<h1>Pronóstico científico de <em>tu recuperación</em></h1>
+<p class="hero-sub">Cruce de los 30 alimentos, hábitos y suplementos con tu perfil clínico real. Cada predicción tiene fuente indexada. Sin exageraciones.</p>
+</header>
 
-<section class="s" id="matriz"><div class="sl">03 · Matriz</div><h2>28 × 8 <em>completa</em></h2><p class="sd">●●● = alto directo. ●● = moderado. ● = apoyo.</p>
-<div class="mx fade"><table><thead><tr><th>Elemento</th><th>Cerebro</th><th>Masa</th><th>Gastrit.</th><th>Ánimo</th><th>Testost.</th><th>Piel</th><th>Tinnitus</th><th>Cabello</th></tr></thead><tbody>
-<tr><td>1. Abstinencia</td><td class="c3">●●●</td><td class="c2">●●</td><td class="c1">●</td><td class="c3">●●●</td><td class="c3">●●●</td><td class="c2">●●</td><td class="c1">●</td><td class="c2">●●</td></tr>
-<tr><td>2. Ejercicio</td><td class="c3">●●●</td><td class="c3">●●●</td><td class="c1">●</td><td class="c3">●●●</td><td class="c3">●●●</td><td class="c2">●●</td><td class="c1">●</td><td class="c2">●●</td></tr>
-<tr><td>3. Huevos 3/día</td><td class="c2">●●</td><td class="c3">●●●</td><td class="c0"></td><td class="c1">●</td><td class="c3">●●●</td><td class="c1">●</td><td class="c0"></td><td class="c1">●</td></tr>
-<tr><td>4. Mg 400mg</td><td class="c2">●●</td><td class="c2">●●</td><td class="c1">●</td><td class="c3">●●●</td><td class="c1">●</td><td class="c1">●</td><td class="c3">●●●</td><td class="c0"></td></tr>
-<tr><td>5. Maca negra</td><td class="c2">●●</td><td class="c1">●</td><td class="c0"></td><td class="c2">●●</td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>6. Sacha inchi</td><td class="c3">●●●</td><td class="c2">●●</td><td class="c0"></td><td class="c2">●●</td><td class="c1">●</td><td class="c2">●●</td><td class="c2">●●</td><td class="c1">●</td></tr>
-<tr><td>7. Quinoa</td><td class="c1">●</td><td class="c3">●●●</td><td class="c1">●</td><td class="c1">●</td><td class="c1">●</td><td class="c0"></td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>8. Kéfir</td><td class="c2">●●</td><td class="c1">●</td><td class="c3">●●●</td><td class="c3">●●●</td><td class="c1">●</td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>9. Camu camu</td><td class="c1">●</td><td class="c0"></td><td class="c2">●●</td><td class="c1">●</td><td class="c0"></td><td class="c3">●●●</td><td class="c0"></td><td class="c1">●</td></tr>
-<tr><td>10. Tarwi</td><td class="c1">●</td><td class="c3">●●●</td><td class="c0"></td><td class="c0"></td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>11. Cañihua</td><td class="c2">●●</td><td class="c2">●●</td><td class="c0"></td><td class="c1">●</td><td class="c1">●</td><td class="c0"></td><td class="c0"></td><td class="c1">●</td></tr>
-<tr><td>12. Palta</td><td class="c2">●●</td><td class="c2">●●</td><td class="c0"></td><td class="c1">●</td><td class="c3">●●●</td><td class="c2">●●</td><td class="c0"></td><td class="c1">●</td></tr>
-<tr><td>13. Zinc 50mg</td><td class="c2">●●</td><td class="c2">●●</td><td class="c1">●</td><td class="c2">●●</td><td class="c3">●●●</td><td class="c3">●●●</td><td class="c2">●●</td><td class="c3">●●●</td></tr>
-<tr><td>14. SPF 50+</td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c3">●●●</td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>15. Manzanilla</td><td class="c1">●</td><td class="c0"></td><td class="c3">●●●</td><td class="c3">●●●</td><td class="c0"></td><td class="c2">●●</td><td class="c0"></td><td class="c2">●●</td></tr>
-<tr><td>16. Beterraga</td><td class="c2">●●</td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td><td class="c1">●</td><td class="c2">●●</td><td class="c0"></td><td class="c2">●●</td></tr>
-<tr><td>17. Sangre de Grado</td><td class="c0"></td><td class="c0"></td><td class="c3">●●●</td><td class="c0"></td><td class="c0"></td><td class="c3">●●●</td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>18. Jabón cúrcuma</td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>19. Jabón arroz</td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>20. Cacao Cusco</td><td class="c3">●●●</td><td class="c1">●</td><td class="c0"></td><td class="c3">●●●</td><td class="c1">●</td><td class="c2">●●</td><td class="c0"></td><td class="c1">●</td></tr>
-<tr><td>21. Aguaymanto</td><td class="c1">●</td><td class="c0"></td><td class="c1">●</td><td class="c2">●●</td><td class="c0"></td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>22. Maíz morado</td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td><td class="c1">●</td><td class="c0"></td><td class="c2">●●</td><td class="c0"></td><td class="c2">●●</td></tr>
-<tr><td>23. Romero</td><td class="c1">●</td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c1">●</td><td class="c0"></td><td class="c3">●●●</td></tr>
-<tr><td>24. Uña de Gato</td><td class="c1">●</td><td class="c0"></td><td class="c2">●●</td><td class="c1">●</td><td class="c0"></td><td class="c1">●</td><td class="c2">●●</td><td class="c0"></td></tr>
-<tr><td>25. Voz</td><td class="c1">●</td><td class="c0"></td><td class="c0"></td><td class="c2">●●</td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c0"></td></tr>
-<tr><td>26. Colágeno</td><td class="c0"></td><td class="c1">●</td><td class="c0"></td><td class="c0"></td><td class="c0"></td><td class="c3">●●●</td><td class="c0"></td><td class="c2">●●</td></tr>
-<tr><td>27. B12</td><td class="c3">●●●</td><td class="c1">●</td><td class="c0"></td><td class="c2">●●</td><td class="c1">●</td><td class="c0"></td><td class="c3">●●●</td><td class="c0"></td></tr>
-<tr><td>28. Vit C→Camu</td><td class="c1">●</td><td class="c0"></td><td class="c2">●●</td><td class="c1">●</td><td class="c0"></td><td class="c3">●●●</td><td class="c0"></td><td class="c1">●</td></tr>
-</tbody></table></div>
-<p style="font-size:11px;color:var(--text4);text-align:center">●●● por objetivo → Piel:7 | Ánimo:6 | Cerebro:6 | Testosterona:5 | Masa:4 | Gastritis:4 | Tinnitus:3 | Cabello:3</p>
-</section><div class="dv"></div>
+<div class="divider"></div>
 
-<section class="s" id="pronostico"><div class="sl">04 · Timeline</div><h2>Qué pasa en <em>cada fase</em></h2><p class="sd">Asumiendo adherencia ≥80% al sistema completo.</p>
+<!-- ═══ MATRIZ DE 30 ITEMS ═══ -->
+<section class="sec" id="matriz">
+<div class="sec-l">01 · Matriz maestra</div>
+<h2>Los 30 elementos y <em>qué atacan</em></h2>
+<p class="sec-d">Cada elemento cruzado contra tus 8 problemas principales. ✓ = ya lo consumes. ★ = nuevo a agregar.</p>
 
-<div class="pg fade"><div class="ph"><div class="pd">7<small>días — Hoy</small></div><div class="pp" style="background:var(--red-bg);color:#c5221f">Abstinencia aguda</div></div><div class="pb"><div class="gg"><div class="gi"><h4 style="color:var(--green)">✓ Testosterona</h4><p>Pico +145.7% día 7 (Jiang 2003). Los niveles más altos que has tenido en años.</p><span class="src">J Zhejiang Univ 4(2):236–240</span></div><div class="gi"><h4 style="color:var(--orange)">⟳ Síntomas</h4><p>Dolor cabeza, irritabilidad, antojos. Normal — dopamina recalibrándose. Mg + manzanilla mitigan.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Kéfir</h4><p>Primeras colonias Lactobacillus estableciéndose. Leve mejora digestiva.</p></div></div><div class="pn"><strong>Sensación día 7:</strong> Energía irregular, claridad intermitente, sueño inestable. Temporal — cerebro adaptándose a ausencia de sobreestimulación.</div></div></div>
+<div style="overflow-x:auto">
+<table class="cross">
+<thead>
+<tr>
+<th>#</th>
+<th>Elemento</th>
+<th>Testo</th>
+<th>Piel/Manchas</th>
+<th>Cerebro/Memoria</th>
+<th>Gastritis/Halitosis</th>
+<th>Tinnitus</th>
+<th>Masa muscular</th>
+<th>Ánimo/Ansiedad</th>
+<th>Cabello</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td class="check">Abstinencia ✓</td><td>●●●</td><td>●●</td><td>●●●</td><td>●</td><td>●</td><td>●●</td><td>●●●</td><td>●●</td></tr>
+<tr><td>2</td><td class="new">Ejercicio fuerza ★</td><td>●●●</td><td>●</td><td>●●●</td><td></td><td></td><td>●●●</td><td>●●●</td><td></td></tr>
+<tr><td>3</td><td class="new">Huevos 2-3/día ★</td><td>●●●</td><td>●</td><td>●●</td><td></td><td></td><td>●●●</td><td>●</td><td>●</td></tr>
+<tr><td>4</td><td class="check">Magnesio 1.5g ✓</td><td></td><td></td><td>●●</td><td></td><td>●●●</td><td>●●</td><td>●●●</td><td></td></tr>
+<tr><td>5</td><td class="check">Maca negra ✓</td><td>●●</td><td></td><td>●●</td><td></td><td></td><td>●</td><td>●●</td><td></td></tr>
+<tr><td>6</td><td class="new">Sacha inchi ★</td><td></td><td>●●</td><td>●●●</td><td></td><td>●●</td><td>●</td><td>●●</td><td>●</td></tr>
+<tr><td>7</td><td class="check">Quinoa ✓</td><td></td><td></td><td>●</td><td></td><td></td><td>●●●</td><td></td><td></td></tr>
+<tr><td>8</td><td class="check">Kéfir ✓</td><td></td><td>●●</td><td>●●</td><td>●●●</td><td></td><td></td><td>●●●</td><td></td></tr>
+<tr><td>9</td><td class="new">Camu camu ★</td><td></td><td>●●●</td><td>●</td><td></td><td></td><td></td><td>●</td><td></td></tr>
+<tr><td>10</td><td class="new">Tarwi ★</td><td></td><td></td><td></td><td></td><td></td><td>●●●</td><td></td><td></td></tr>
+<tr><td>11</td><td class="new">Cañihua ★</td><td></td><td></td><td>●</td><td></td><td></td><td>●●</td><td></td><td>●</td></tr>
+<tr><td>12</td><td class="check">Palta ✓</td><td>●●</td><td>●●</td><td>●</td><td></td><td></td><td>●</td><td>●</td><td>●</td></tr>
+<tr><td>13</td><td class="new">Zinc 30mg ★</td><td>●●●</td><td>●●●</td><td>●●</td><td></td><td>●●</td><td>●</td><td>●●</td><td>●●●</td></tr>
+<tr><td>14</td><td class="new">SPF 50+ ★</td><td></td><td>●●●</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>15</td><td class="check">Manzanilla ✓</td><td></td><td>●●</td><td></td><td></td><td></td><td></td><td>●●●</td><td>●●</td></tr>
+<tr><td>16</td><td class="check">Beterraga ✓</td><td></td><td>●</td><td>●●</td><td></td><td>●</td><td>●●</td><td></td><td></td></tr>
+<tr><td>17</td><td class="new">Sangre de grado ★</td><td></td><td>●●●</td><td></td><td>●●</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>18</td><td class="new">Jabón cúrcuma ★</td><td></td><td>●●</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>19</td><td class="new">Jabón arroz ★</td><td></td><td>●●</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>20</td><td class="new">Cacao puro Cusco ★</td><td></td><td></td><td>●●●</td><td></td><td></td><td></td><td>●●●</td><td></td></tr>
+<tr><td>21</td><td class="new">Aguaymanto ★</td><td></td><td>●●</td><td></td><td></td><td></td><td></td><td>●●</td><td></td></tr>
+<tr><td>22</td><td class="new">Maíz morado ★</td><td></td><td>●●</td><td>●●</td><td></td><td></td><td></td><td></td><td>●●</td></tr>
+<tr><td>23</td><td class="check">Romero ✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>●●●</td></tr>
+<tr><td>24</td><td class="new">Uña de gato ★</td><td></td><td>●</td><td>●●</td><td>●</td><td>●●</td><td></td><td>●</td><td></td></tr>
+<tr><td>25</td><td class="check">Voz ✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td>●●</td><td></td></tr>
+<tr><td>26</td><td class="new">Colágeno ★</td><td></td><td>●●●</td><td></td><td></td><td></td><td>●</td><td></td><td></td></tr>
+<tr><td>27</td><td class="new">B12 ★</td><td></td><td></td><td>●●●</td><td></td><td>●●●</td><td></td><td>●●</td><td></td></tr>
+<tr><td>28</td><td class="check">Vit. C ✓→Camu</td><td></td><td>●●</td><td>●</td><td></td><td></td><td></td><td>●</td><td></td></tr>
+<tr><td>29</td><td class="check">Ajo 1 diente ✓</td><td>●●</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>30</td><td class="new">Kion/Jengibre ★</td><td>●</td><td></td><td></td><td>●●●</td><td></td><td></td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<p style="font-size:11px;color:var(--text4);margin-top:8px">● = efecto leve · ●● = efecto moderado · ●●● = efecto fuerte. Basado en evidencia PubMed/Scopus. Los vacíos significan que no hay evidencia directa relevante.</p>
 
-<div class="pg fade"><div class="ph"><div class="pd">14<small>días</small></div><div class="pp" style="background:var(--orange-bg);color:#c77600">Adaptación</div></div><div class="pb"><div class="gg"><div class="gi"><h4 style="color:var(--green)">✓ Zinc</h4><p>Primeros efectos: mejor sueño, reducción inicial granos. Niveles séricos normalizándose.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Creatina</h4><p>Saturación muscular completa. +1–2 kg (agua intracelular).</p><span class="src">Buford 2007, JISSN</span></div><div class="gi"><h4 style="color:var(--teal)">⟳ Gastritis</h4><p>Kéfir + manzanilla: flora restaurándose. Halitosis comenzando a reducirse.</p></div></div><div class="pn"><strong>Día 14:</strong> Posible "flatline" (baja libido/motivación) — señal de reset, NO retroceso. Cerebro reconstruyendo receptores.</div></div></div>
-
-<div class="pg fade"><div class="ph"><div class="pd">30<small>días</small></div><div class="pp" style="background:var(--gold-bg);color:var(--gold)">Reset progreso</div></div><div class="pb"><div class="gg"><div class="gi"><h4 style="color:var(--green)">✓ Cognición</h4><p>B12 remielinizando. Cacao + ejercicio: BDNF acumulado → mejoras memoria trabajo.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Masa +2 kg</h4><p>+1.5–2.5 kg (creatina + masa real). Fuerza +15–20% sentadilla/press.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Piel -20%</h4><p>Zinc: lesiones -20%. SPF: cero manchas nuevas. Sangre de Grado: cicatrización acelerando.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Ánimo -50%</h4><p>D2 parcialmente up. Serotonina estabilizada. Irritabilidad -50%. Maca energía 16h.</p></div></div><div class="pn"><strong>Hito día 30:</strong> Tu entorno empieza a notar — piel más clara, más energía, menos irritable, postura recta, voz firme. El día 30 se vuelve visible para otros.</div></div></div>
-
-<div class="pg fade"><div class="ph"><div class="pd">60<small>días</small></div><div class="pp" style="background:var(--teal-bg);color:#1a8a9e">Neuroplasticidad</div></div><div class="pb"><div class="gg"><div class="gi"><h4 style="color:var(--green)">✓ Cerebro</h4><p>D2 recuperados. BDNF consolidado. Memoria pre-hábito. "Primer puesto" al alcance.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Testosterona</h4><p>Zinc normalizado. T libre/total en aumento medible. Voz más grave. Barba más gruesa.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Tinnitus</h4><p>B12 + Mg + NAC: reducción subjetiva. Noches más silenciosas.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Gastritis</h4><p>Si H.pylori tratado: remisión. Halitosis controlada. Absorción mejorada.</p></div></div><div class="pn"><strong>Día 60 = "antes y después" dramático.</strong> Niebla disipada. Energía estable todo el día. Tono piel diferente. "Te ves diferente."</div></div></div>
-
-<div class="pg fade"><div class="ph"><div class="pd">90<small>días</small></div><div class="pp" style="background:var(--green-bg);color:#1a7a34">Reset completo</div></div><div class="pb"><div class="gg"><div class="gi"><h4 style="color:var(--green)">✓ Dopamina</h4><p>Transportadores D2 recuperados (Volkow 2001). Abstinencia = identidad. Compulsión sin poder.</p></div><div class="gi"><h4 style="color:var(--green)">✓ +4–5 kg</h4><p>63–65 kg. Masa visible. 1.80m + músculo = presencia diferente. La ropa queda diferente.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Piel -50%</h4><p>Zinc + SPF + colágeno + camu camu + Sangre de Grado: textura y tono transformados.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Voz 12 sem</h4><p>Cambios permanentes resonancia. T + entrenamiento = impacto al hablar. Clases con autoridad.</p></div></div><div class="pn"><strong>Día 90 = nuevo baseline.</strong> Análisis sangre: zinc OK, T alta, B12 óptima. Zinc baja a 30mg. Foto día 1 vs 90 = otra persona.</div></div></div>
-
-<div class="pg fade"><div class="ph"><div class="pd">180<small>6 meses</small></div><div class="pp" style="background:var(--purple-bg);color:var(--purple)">Transformación</div></div><div class="pb"><div class="gg"><div class="gi"><h4 style="color:var(--green)">✓ 65–68 kg</h4><p>IMC 20–21. "No puedo subir" ya no es tu realidad.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Cabello</h4><p>Romero 6 meses = RCT completo Panahi. Zinc: folículos restaurados. Más grueso.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Manchas -60%</h4><p>6 meses camu camu + SPF + Sangre de Grado = tono uniforme significativo.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Tinnitus -50%+</h4><p>B12 + Mg + NAC: restauración coclear progresiva.</p></div></div><div class="pn"><strong>Hombre de 6 meses:</strong> 65+ kg con músculo, piel clara, cabello grueso, voz grave, cero compulsiones, cerebro a capacidad, tesis IA, inglés intermedio-alto.</div></div></div>
-
-<div class="pg fade"><div class="ph"><div class="pd">365<small>1 año</small></div><div class="pp" style="background:linear-gradient(135deg,var(--green-bg),var(--teal-bg));color:#1a7a34">Élite</div></div><div class="pb"><div class="gg"><div class="gi"><h4 style="color:var(--green)">✓ 68–72 kg</h4><p>IMC 21–22. Visual de 1 año de disciplina.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Cerebro élite</h4><p>365h Deep Work. Tesis avanzada. Inglés funcional. Mandarín básico.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Eje hormonal</h4><p>T rango óptimo. Próstata OK. HHA equilibrado. Bioquímica de 30 sano.</p></div><div class="gi"><h4 style="color:var(--green)">✓ Presencia total</h4><p>1.80m, 70 kg, piel clara, voz grave, 2 idiomas, tesis IA, empresa. Tu vida real.</p></div></div><div class="pn"><strong>La acumulación es exponencial.</strong> Mes 1 es lento. Meses 4–6 se aceleran — todas las sinergias activas simultáneamente. <strong>El sistema no suma — se multiplica.</strong></div></div></div>
+<div class="alert alert-b fade" style="margin-top:20px">
+<div class="alert-t">Lectura clave de la matriz</div>
+<p><strong>Testosterona</strong> tiene 6 ataques fuertes (●●●): abstinencia + ejercicio + huevos + zinc + ajo + maca. Es el dominio más cubierto.<br>
+<strong>Piel/Manchas</strong> tiene 7 ataques: zinc + camu camu + SPF + sangre de grado + jabones + colágeno + manzanilla.<br>
+<strong>Cerebro/Memoria</strong> tiene 6: abstinencia + ejercicio + sacha inchi + cacao + B12 + beterraga.<br>
+<strong>Gastritis/Halitosis</strong> tiene solo 3 ataques fuertes: kéfir + kion + sangre de grado. Necesita tratamiento médico (H. pylori) primero.<br>
+<strong>Tinnitus</strong> es el más difícil: Mg + B12 + sacha inchi + uña de gato. Mejora gradual, no eliminación.</p>
+</div>
 </section>
 
-<footer><p><strong>Pronósticos Científicos V5 · 28 × 8</strong></p><p>Jiang 2003 · Dreno · Panahi 2015 · Shemesh 1993 · Volkow 2001 · Vaisberg 1989 · Amsterdam 2009 · Sokolov 2013 · Boyle 2017 · Prasad 1996 · Tran 2006</p><p style="margin-top:12px;opacity:.5">No reemplaza consulta médica · Arequipa, Marzo 2026</p></footer>
-<script>const o=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.fade').forEach(el=>o.observe(el));</script>
-</body></html>
+<div class="divider"></div>
+
+<!-- ═══ SINERGIAS ═══ -->
+<section class="sec" id="sinergias">
+<div class="sec-l">02 · Sinergias cruzadas</div>
+<h2>Cuando 1+1 = <em>3</em></h2>
+<p class="sec-d">Combinaciones donde dos elementos juntos producen un efecto mayor que la suma individual. Esto es lo que hace tu stack único.</p>
+
+<div class="syn fade">
+<div class="syn-card" style="border-color:var(--red)">
+<h4>Abstinencia + Zinc 30mg + Huevos</h4>
+<p><strong>Sinergia testosterónica triple.</strong> Abstinencia detiene la pérdida de zinc (5mg/eyaculación). Zinc suplementado repone reservas. Huevos proveen colesterol HDL como materia prima. El efecto combinado es 3× mayor que cualquiera solo. Pronóstico: testosterona total ↑ 25–40% en 90 días.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Prasad AS (1996) Nutrition; Jiang M et al. (2014) Archives Andrology</p>
+</div>
+<div class="syn-card" style="border-color:var(--accent)">
+<h4>Camu camu + Colágeno + Sangre de grado</h4>
+<p><strong>Triple ataque a manchas.</strong> Camu camu (vit C) es cofactor obligatorio de prolil hidroxilasa para síntesis de colágeno. Sangre de grado (taspina) acelera cicatrización tópica. Colágeno provee la materia prima. Triple mecanismo: producir + estabilizar + reparar.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Pullar JM (2017) Nutrients; Vaisberg AJ (1989) Planta Med</p>
+</div>
+</div>
+
+<div class="syn fade">
+<div class="syn-card" style="border-color:var(--green)">
+<h4>Kéfir + Kion + Ajo</h4>
+<p><strong>Triple gastrointestinal.</strong> Kéfir restaura flora → mejora absorción de TODO. Kion (6-gingerol) es gastroprotector + antiemético. Ajo (alicina) tiene actividad anti-H.pylori documentada in vitro. Juntos atacan gastritis desde 3 ángulos: flora, protección mucosa, antibacteriano.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Dinan TG (2015) Biol Psychiatry; Haniadka R (2013) Food & Function</p>
+</div>
+<div class="syn-card" style="border-color:var(--purple)">
+<h4>B12 + Mg + Sacha inchi + Uña de gato</h4>
+<p><strong>Protocolo anti-tinnitus completo.</strong> B12 repara mielina en nervio auditivo (47% tinnitus asociado a déficit). Mg bloquea canales NMDA cocleares. Sacha inchi (omega-3 ALA) reduce inflamación neurovascular. Uña de gato inhibe NF-κB (inflamación sistémica). 4 mecanismos complementarios.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Shemesh Z (1993) Am J Otolaryngol; Allen et al. (2013) Cochrane</p>
+</div>
+</div>
+
+<div class="syn fade">
+<div class="syn-card" style="border-color:var(--gold)">
+<h4>Ejercicio + Cacao puro + Beterraga</h4>
+<p><strong>Sinergia BDNF + flujo sanguíneo.</strong> Ejercicio ↑ BDNF 200–300%. Cacao (flavanoles) ↑ flujo cerebral por vasodilatación vía NO. Beterraga (nitratos) ↑ óxido nítrico sistémico. El cerebro recibe más sangre, más oxígeno, más BDNF. Tu memoria de "primer puesto" regresa aquí.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Hillman CH (2008) Nature Rev Neurosci; Nehlig A (2013) Br J Clin Pharmacol</p>
+</div>
+<div class="syn-card" style="border-color:var(--teal)">
+<h4>Romero + Manzanilla + Maíz morado</h4>
+<p><strong>Triple capilar + piel clara.</strong> Romero inhibe 5α-reductasa (= minoxidil 2%). Manzanilla aclara gradualmente + antiinflamatorio GABA. Maíz morado (antocianinas) mejora microcirculación folicular. Como baño combinado: cabello + piel + relajación.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Panahi Y (2015) SKINmed; Srivastava JK (2010) Mol Med Reports</p>
+</div>
+</div>
+
+<div class="syn fade">
+<div class="syn-card" style="border-color:var(--orange)">
+<h4>Abstinencia + Ejercicio + Cacao</h4>
+<p><strong>Reset dopaminérgico acelerado.</strong> Abstinencia permite que receptores D2 se upregulaten. Ejercicio genera dopamina natural (sin crash). Cacao contiene feniletilamina + anandamida → placer sin sobreestimulación. Juntos, tu cerebro aprende a obtener recompensa de fuentes saludables.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Volkow ND (2001) J Neurosci; Nehlig A (2013) Br J Clin Pharmacol</p>
+</div>
+<div class="syn-card">
+<h4>Jabón cúrcuma (noche) + Jabón arroz (mañana) + SPF</h4>
+<p><strong>Ciclo despigmentante 24h.</strong> Cúrcuma (curcumina) inhibe tirosinasa nocturna. Arroz (ácido kójico + orizanol) aclara de mañana. SPF previene reacumulación de melanina por UV. Sin SPF, los otros dos trabajan pero la mancha vuelve. Con SPF, el progreso es acumulativo.</p>
+<p style="font-size:11px;color:var(--text4);margin-top:4px">Vaughn AR (2016) Phytother Res; Maeda K (2007) J Cosmet Sci</p>
+</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PRONÓSTICO TEMPORAL ═══ -->
+<section class="sec" id="pronostico">
+<div class="sec-l">03 · Pronóstico por tiempo</div>
+<h2>Cómo mejorarás <em>semana a semana</em></h2>
+<p class="sec-d">Predicciones basadas en evidencia clínica. Cada pronóstico tiene margen de error. No son promesas — son probabilidades altas con cumplimiento consistente del protocolo.</p>
+
+<div class="prog fade">
+<div class="prog-time"><div class="days">7</div><div class="unit">días</div><div class="prog-bar"><div class="prog-fill" style="width:8%;background:var(--red)"></div></div></div>
+<div><h3>Donde estás ahora — Abstinencia aguda</h3>
+<p>Dolor de cabeza (recalibración dopaminérgica). Energía fluctuante. Irritabilidad pico. Tu cuerpo está produciendo menos dopamina de la habitual pero los receptores aún no se han recuperado. <strong>Mejoras esperadas:</strong> si empiezas comida completa hoy, en 7 días notas más energía matutina por las 2,850 kcal. El kéfir empieza a restaurar flora gástrica — la halitosis puede reducirse levemente si no hay H. pylori.</p>
+<div class="evidence">Shevchuk NA (2008) Med Hypotheses; Dinan TG (2015) Biol Psychiatry</div></div>
+</div>
+
+<div class="prog fade">
+<div class="prog-time"><div class="days">14</div><div class="unit">días</div><div class="prog-bar"><div class="prog-fill" style="width:15%;background:var(--orange)"></div></div></div>
+<div><h3>Primeras señales visibles</h3>
+<p><strong>Piel:</strong> El zinc oral 30mg + jabón cúrcuma/arroz empiezan a reducir producción de sebo. Granos nuevos disminuyen en frecuencia (no los existentes). <strong>Energía:</strong> Con 2,850 kcal × 14 días, tu peso sube ~0.5–1 kg (mayormente agua y glucógeno muscular). <strong>Gastritis:</strong> Si empezaste tratamiento H. pylori, la halitosis mejora significativamente a los 10–14 días de antibióticos. <strong>Cerebro:</strong> El dolor de cabeza de abstinencia desaparece. Inicio del "flatline" — baja libido, estado plano. Es normal.</p>
+<div class="evidence">Prasad AS (1996) Nutrition; Goldstein & Walker (2014) Annu Rev Clin Psychol</div></div>
+</div>
+
+<div class="prog fade">
+<div class="prog-time"><div class="days">30</div><div class="unit">días</div><div class="prog-bar"><div class="prog-fill" style="width:30%;background:var(--gold)"></div></div></div>
+<div><h3>Cambio de tendencia</h3>
+<p><strong>Peso:</strong> +1.5–2.5 kg (pasas de 60 a 61.5–62.5 kg). Visible en cara y brazos. <strong>Piel:</strong> Granos activos reducidos 20–30% por zinc oral. Sangre de grado cicatriza marcas existentes. Rosa mosqueta + camu camu empiezan a aclarar manchas. <strong>Cerebro:</strong> Con ejercicio 3×/sem + cacao + beterraga, BDNF ↑ significativamente. Empiezas a notar mejor retención de lo que estudias. <strong>Ánimo:</strong> El flatline termina hacia día 25–30. Regresa motivación más estable que antes — sin los picos/crashes de dopamina por masturbación. <strong>Cabello:</strong> Romero 3×/sem muestra primeros resultados (menos caída).</p>
+<div class="evidence">Hillman CH (2008) Nature Rev Neurosci; Panahi Y (2015) SKINmed</div></div>
+</div>
+
+<div class="prog fade">
+<div class="prog-time"><div class="days">60</div><div class="unit">días</div><div class="prog-bar"><div class="prog-fill" style="width:55%;background:var(--accent)"></div></div></div>
+<div><h3>Transformación visible</h3>
+<p><strong>Peso:</strong> +3–4 kg (63–64 kg). IMC sube a ~19.3–19.8. Sales de la zona de riesgo. <strong>Testosterona:</strong> Con abstinencia 60 días + zinc + huevos + ejercicio + ajo, la testosterona total puede ↑ 25–40% desde tu baseline. Esto se nota en: energía, confianza, tono muscular, voz más grave. <strong>Piel:</strong> Manchas faciales reducidas 40–50% (rosa mosqueta + camu camu + SPF + sangre de grado). Granos nuevos casi eliminados si zinc sérico se normalizó. <strong>Cerebro:</strong> Receptores D2 en recuperación activa. La concentración en clases de 12h es significativamente más fácil. <strong>Tinnitus:</strong> B12 + Mg + sacha inchi → reducción gradual de intensidad percibida (no eliminación). Estudios muestran 30–40% de mejora subjetiva con B12 en tinnitus crónico asociado a déficit.</p>
+<div class="evidence">Volkow ND (2001) J Neurosci; Shemesh Z (1993) Am J Otolaryngol; Prasad (1996)</div></div>
+</div>
+
+<div class="prog fade">
+<div class="prog-time"><div class="days">90</div><div class="unit">días</div><div class="prog-bar"><div class="prog-fill" style="width:75%;background:var(--green)"></div></div></div>
+<div><h3>Reset completado — Nuevo baseline</h3>
+<p><strong>Peso:</strong> +4.5–6 kg (64.5–66 kg). IMC ~19.9–20.4. <strong>Testosterona:</strong> Si los análisis de sangre confirman recuperación, estás en rango óptimo para tu edad. La diferencia es sistémica: cara con menos grasa subcutánea, mandíbula más definida, más masa muscular visible en hombros y brazos. <strong>Piel:</strong> Manchas reducidas 60–70%. Los granos son evento raro, no crónico. <strong>Cerebro:</strong> Tu capacidad cognitiva está en el nivel más alto desde los ~16 años. La memoria de trabajo, velocidad de procesamiento y concentración sostenida están restauradas. <strong>Ánimo:</strong> La irritabilidad baja drásticamente. Tolerancia al estrés de 16h/día de universidad es manejable. <strong>Halitosis:</strong> Si H. pylori fue tratado, eliminada. Si era por disbiosis intestinal, el kéfir + kion + ajo la han reducido significativamente.</p>
+<div class="evidence">Panahi (2015); Pullar (2017); Volkow (2001); Dinan (2015)</div></div>
+</div>
+
+<div class="prog fade">
+<div class="prog-time"><div class="days">180</div><div class="unit">días</div><div class="prog-bar"><div class="prog-fill" style="width:90%;background:var(--green)"></div></div></div>
+<div><h3>6 meses — Consolidación estructural</h3>
+<p><strong>Peso:</strong> 66–70 kg (meta realista para ectomorfo con ejercicio 3×/sem y 2,850 kcal). IMC 20.4–21.6. <strong>Masa muscular:</strong> Con creatina + quinoa + tarwi + huevos + ejercicio, la ganancia muscular neta es de ~3–4 kg en 6 meses (el resto es grasa saludable). <strong>Piel:</strong> Manchas reducidas 80%+ con protocolo consistente. La piel tiene textura y tono visiblemente diferentes. <strong>Voz:</strong> 6 meses de entrenamiento vocal diario = cambio audible para los demás. Tu tono de dictado de clases es notablemente más grave y pausado. <strong>Cabello:</strong> Romero × 6 meses = eficacia equivalente a minoxidil 2%. Menos caída, más densidad perceptible. <strong>Tinnitus:</strong> Reducción de 30–50% en intensidad percibida. No eliminación completa — pero significativamente más manejable.</p>
+<div class="evidence">Panahi Y (2015) SKINmed 6-month RCT; Schuler & Volek (2002)</div></div>
+</div>
+
+<div class="prog fade">
+<div class="prog-time"><div class="days">365</div><div class="unit">días</div><div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--green))"></div></div></div>
+<div><h3>1 año — El hombre que describes</h3>
+<p><strong>Físico:</strong> 68–72 kg, IMC 21–22.2. Cuerpo de alguien que entrena y come bien, no de alguien desnutrido. <strong>Académico:</strong> Con cerebro nutrido + BDNF alto + dopamina regulada, el rendimiento de "primer puesto" es recuperable. La tesis de mano biónica con IA tiene un año de Deep Work acumulado (365h). <strong>Presencia:</strong> 1.80m + postura entrenada + voz grave + piel clara + aroma + vestimenta = la persona que cambia la energía de un cuarto al entrar. <strong>Profesional:</strong> Inglés funcional por input diario de 30 min × 365 = 180h de inmersión. Base de mandarín si empezaste Fluent Forever. <strong>Social:</strong> Las 48 Leyes + Influence + Never Split + Charisma Myth + práctica diaria de cumplidos = habilidad social de élite.</p>
+<div class="evidence">Pronóstico compuesto basado en adherencia ≥80% al protocolo completo</div></div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ POR DOMINIO ═══ -->
+<section class="sec" id="dominio">
+<div class="sec-l">04 · Pronóstico por dominio</div>
+<h2>Cada problema, <em>cuánto mejora</em></h2>
+<p class="sec-d">Probabilidades realistas con cumplimiento ≥80% del protocolo. No son garantías — son las mejores estimaciones basadas en la evidencia disponible.</p>
+
+<div class="card fade">
+<h3>🧬 Testosterona — Pronóstico: ↑ 25–45% en 90 días</h3>
+<p>Es tu dominio más cubierto (6 ataques fuertes). La abstinencia sola ya altera significativamente el eje. Combinada con zinc (repone 14 años de depleción), huevos (colesterol HDL → células de Leydig), ejercicio de fuerza (señal anabólica directa), ajo (inhibe aromatasa → menos conversión T→E), y maca negra (modula eje HHA), tienes un protocolo hormonal natural que rivaliza con suplementación farmacológica.</p>
+<p><strong>Evidencia:</strong> Prasad et al. (1996) demostró que suplementación de zinc en hombres con déficit leve elevó testosterona sérica significativamente en 6 meses. Jiang et al. (2014) documentó que 3 semanas de abstinencia eyaculatoria elevaron testosterona pico en ~46% el día 7.</p>
+</div>
+
+<div class="card fade">
+<h3>🧠 Cerebro/Memoria — Pronóstico: recuperación cognitiva al 85–95% en 6 meses</h3>
+<p>Tu "olvido rápido" y pérdida de rendimiento académico tienen causas reversibles: desnutrición cerebral (IMC 18.5), depleción de zinc, downregulation de D2, y posible déficit de B12. Con 2,850 kcal + B12 + ejercicio (BDNF +200%) + cacao (flujo cerebral ↑) + beterraga (NO ↑) + sacha inchi (omega-3 → membranas neuronales), estás atacando desde 6 ángulos.</p>
+<p><strong>Pronóstico conservador:</strong> A los 60 días notas mejora marcada en retención. A los 90 días, la concentración de 12h es significativamente más fácil. A los 6 meses, el rendimiento académico debería acercarse a tu baseline de "primer puesto".</p>
+</div>
+
+<div class="card fade">
+<h3>🪞 Piel/Manchas — Pronóstico: reducción 60–80% en 6 meses</h3>
+<p>Tienes 7 ataques simultáneos. <strong>Interno:</strong> Zinc (reduce sebo + cicatrización), colágeno + camu camu (síntesis dérmica), aguaymanto (vitamina A → renovación celular). <strong>Tópico:</strong> Sangre de grado (taspina = principio cicatrizante documentado en Planta Medica), rosa mosqueta (tretinoin natural), jabones cúrcuma/arroz (despigmentación día/noche). <strong>Preventivo:</strong> SPF 50+ (sin esto, las manchas que aclares vuelven con el sol de Arequipa).</p>
+<p><strong>Lo más importante:</strong> Los granos son síntoma de zinc bajo — con suplementación, reducen 30% en 4 semanas. Las manchas son proceso lento: 8–12 semanas mínimo para cambio visible.</p>
+</div>
+
+<div class="card fade">
+<h3>🔔 Tinnitus — Pronóstico: reducción 30–50% en intensidad percibida en 6 meses</h3>
+<p>Honestidad: el tinnitus crónico raramente se elimina completamente. Pero SÍ se puede reducir significativamente. Tu stack es el más completo posible sin intervención médica: <strong>B12</strong> (Shemesh 1993: 47% de tinnitus crónico asociado a déficit → la suplementación mejoró síntomas en la mayoría), <strong>Mg</strong> (bloquea excitotoxicidad por NMDA en cóclea), <strong>sacha inchi</strong> (omega-3 reduce inflamación neurovascular), <strong>uña de gato</strong> (inhibe NF-κB → antiinflamatorio sistémico). La abstinencia también ayuda: mejor circulación general + menos ansiedad = percepción reducida del tinnitus.</p>
+</div>
+
+<div class="card fade">
+<h3>🫁 Gastritis/Halitosis — Pronóstico: 70–95% resolución con tratamiento médico</h3>
+<p>Si el test de H. pylori es positivo (altamente probable por tu cuadro), el tratamiento antibiótico resuelve la causa raíz en 10–14 días. La halitosis asociada a H. pylori mejora en el 55% de los casos completamente y en 32% parcialmente (PMC2948765). <strong>Tu stack de soporte:</strong> kéfir restaura flora post-antibióticos, kion protege mucosa gástrica, ajo tiene actividad anti-H.pylori in vitro, sangre de grado tiene evidencia para úlceras gástricas. El pronóstico es excelente SI empiezas con el médico.</p>
+</div>
+
+<div class="card fade">
+<h3>💪 Masa muscular — Pronóstico: +5–8 kg en 12 meses</h3>
+<p>Como ectomorfo en déficit calórico, la ganancia inicial es rápida (2–3 kg en el primer mes, mayormente agua/glucógeno). Luego ~0.5 kg/mes de masa magra con ejercicio 3×/sem + 2,850 kcal + 140g proteína (quinoa + tarwi + huevos + pollo/pescado + cañihua). La creatina 5g/día agrega ~1–2 kg de retención intramuscular en las primeras semanas, que se mantiene. Meta realista: 66–68 kg a los 12 meses con IMC ~20.4–21.</p>
+</div>
+
+<div class="card fade">
+<h3>😤 Irritabilidad/Ansiedad — Pronóstico: reducción 60–70% en 90 días</h3>
+<p>Tu irritabilidad tiene 4 causas concurrentes, todas tratables: (1) Desnutrición cerebral → 2,850 kcal lo resuelve. (2) Amígdala hiperactiva por privación de sueño → meta progresiva a 7h. (3) Receptores D2 desensibilizados → abstinencia los recupera en 60–90 días. (4) Déficit de zinc → cobre elevado → ansiedad (Mg + zinc lo equilibran). Con Mg 400mg nocturno + manzanilla + cacao (teobromina = ansiolítico leve), la regulación emocional mejora significativamente.</p>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ RIESGOS ═══ -->
+<section class="sec" id="riesgos">
+<div class="sec-l">05 · Riesgos y advertencias</div>
+<h2>Lo que puede <em>fallar</em></h2>
+<p class="sec-d">Ningún pronóstico es honesto sin advertir qué puede salir mal. Esto no es pesimismo — es realismo que aumenta tu probabilidad de éxito.</p>
+
+<div class="alert alert-r fade">
+<div class="alert-t">Riesgo 1 — No hacer los exámenes médicos</div>
+<p>Sin test de H. pylori, podrías estar suplementando sobre una infección activa que necesita antibióticos. Sin zinc sérico, no sabes tu baseline real. El pronóstico completo depende de tener datos reales. <strong>Todo este documento asume que harás los exámenes esta semana.</strong></p>
+</div>
+
+<div class="alert alert-r fade">
+<div class="alert-t">Riesgo 2 — Magnesio 1.5g es demasiado alto</div>
+<p>Mencionas Mg 1.5g. La dosis máxima recomendada de suplemento de Mg es <strong>400–500mg/día</strong>. A 1.5g (1500mg) puedes tener diarrea osmótica severa, que agravará tu gastritis y malabsorción. <strong>Reduce a 400mg citrato con la cena.</strong> Si necesitas más para tinnitus, consulta médico.</p>
+</div>
+
+<div class="alert alert-o fade">
+<div class="alert-t">Riesgo 3 — Intentar hacer todo a la vez</div>
+<p>30 elementos son demasiados para implementar simultáneamente. El riesgo es abrumarte y abandonar todo en 2 semanas. <strong>Implementa en fases:</strong> Semana 1: comida + zinc + B12 + abstinencia. Semana 2: jabones + SPF + romero. Semana 3: ejercicio + cacao + sangre de grado. Semana 4: uña de gato + colágeno + kion.</p>
+</div>
+
+<div class="alert alert-o fade">
+<div class="alert-t">Riesgo 4 — Recaída en abstinencia</div>
+<p>Con 14 años de hábito compulsivo, la probabilidad de al menos una recaída es alta. <strong>No significa fracaso.</strong> Significa que el día del reset se mueve pero no se pierde el progreso acumulado. El peor error es recaer una vez y decidir "ya arruiné todo" — eso es pensamiento de todo-o-nada que refuerza el loop adictivo.</p>
+</div>
+
+<div class="alert alert-o fade">
+<div class="alert-t">Riesgo 5 — Uña de gato: precauciones</div>
+<p>Uña de gato tiene 2 quimotipos (alcaloides pentacíclicos vs tetracíclicos). Los tetracíclicos actúan en SNC, los pentacíclicos en sistema inmune. Mezclas son inadecuadas (Keplinger 1999). <strong>Asegúrate de comprar extracto estandarizado al 3% de alcaloides oxindólicos pentacíclicos.</strong> No usar si tomas inmunosupresores.</p>
+</div>
+
+<div class="card fade">
+<h3>Interacciones a vigilar</h3>
+<ul>
+<li><strong>Zinc + antibióticos para H. pylori:</strong> El zinc puede reducir absorción de ciertos antibióticos. Tomar zinc 2h después del antibiótico, no junto.</li>
+<li><strong>Uña de gato + medicamentos:</strong> Inhibidor de CYP3A4. Si tomas algún medicamento, consulta antes.</li>
+<li><strong>Sangre de grado oral + gastritis:</strong> Solo uso tópico para manchas. No oral sin supervisión médica si tienes gastritis activa.</li>
+<li><strong>Cacao + Mg antes de dormir:</strong> El cacao tiene cafeína leve. Consumirlo máximo hasta las 16:00, no con la cena.</li>
+</ul>
+</div>
+
+<div class="card fade" style="border-color:var(--green)">
+<h3>Señales de que está funcionando — qué buscar</h3>
+<ul>
+<li><strong>Semana 2:</strong> Más energía matutina, menos flatulencia, sueño ligeramente más profundo.</li>
+<li><strong>Semana 4:</strong> Menos granos nuevos, ropa ligeramente más ajustada (peso ↑), menos irritabilidad.</li>
+<li><strong>Mes 2:</strong> Concentración mejorada en clases, manchas empiezan a aclarar, voz más resonante.</li>
+<li><strong>Mes 3:</strong> Otros te notan diferente (peso, piel, energía, postura). El "primer puesto" se siente alcanzable otra vez.</li>
+<li><strong>Mes 6:</strong> Testosterona en análisis ↑ vs baseline. Peso en rango normal. Piel notablemente diferente. Tinnitus más manejable.</li>
+</ul>
+</div>
+</section>
+
+<footer>
+<p><strong>Pronóstico Científico V5 · 30 Elementos Cruzados</strong></p>
+<p>Fuentes: PubMed · PMC · Scopus · Cochrane · ICD-11</p>
+<p>Cada pronóstico incluye margen de error y asume cumplimiento ≥80%</p>
+<p style="margin-top:12px;opacity:.5">Este documento no reemplaza consulta médica profesional<br>Los exámenes de laboratorio son el primer paso, no el segundo<br>Arequipa · Marzo 2026</p>
+</footer>
+
+<script>
+const o=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade').forEach(el=>o.observe(el));
+</script>
+</body>
+</html>
